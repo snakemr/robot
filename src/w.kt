@@ -1,5 +1,5 @@
 // Нажммите зелёную ► слева от этой строки и выберите "Run 'WKt'"
-fun main() = robot("w13", 5)    // Зелёным цветом выделен номер текущего задания
+fun main() = robot("w17", 5)    // Зелёным цветом выделен номер текущего задания
 // Прочитайте задание. Напишите решение в виде функции: fun wN() { решение }, где N - номер задания
 // Используйте команды робота:
 //          left(), right(), up(), down() - движение робота
@@ -140,4 +140,32 @@ fun w12() {
 
 fun w13() {
     while (wallFromLeft && wallFromRight) up()
+}
+
+fun w14() {
+    while (wallFromLeft || wallFromRight) up()
+}
+
+fun w15() {
+    while (wallFromDown || cellIsFree) right()
+    down()
+    paint()
+}
+
+fun w16() {
+    while (wallFromRight) {
+        up()
+        right()
+        down()
+    }
+}
+
+fun w17() {
+    while (wallFromRight) {
+        up()
+        right()
+        right()
+        down()
+    }
+    left()
 }
