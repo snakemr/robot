@@ -460,88 +460,96 @@ class RobotWindow(taskName: String) : JFrame()  {
                 description = "Робот должен дойти до угла закрашенной области"
                 maxTries = 3
             }
+            "w6" -> {
+                val x=(4..12).random()
+                val y=(2..9).random()
+                setField(15,10,1,1,15,10)
+                wallH(y,0,x-1)
+                wallH(y,x+1, maxx)
+                description = "Робот оставил зарядное устройство в соседней комнате, чтобы в неё попасть, придётся отыскать дверь"
+                maxTries = 5
+            }
+            "w7" -> {
+                val i=(4..7).random()
+                val x=(9..13).random()
+                val y=(2..5).random()
+                setField(15,10,1,8,x,y)
+                doPaint(i,8)
+                doPaint(i,y)
+                doPaint(x,y)
+                description = "Робот должен дойти до третьей закрашенной клетки"
+                maxTries = 5
+            }
+            "w8" -> {
+                val i=(6..9).random()
+                val x=(2..5).random()
+                val y=(9..12).random()
+                setField(13,4,i,2,x-1,2)
+                wallH(2,x-1,y-1)
+                for(j in x..y)
+                    doPaint(j,2,true)
+                description = "Робот должен закрасить все клетки над стеной"
+                maxCycles = (y-x)*2+y-i+4
+                maxTries = 5
+            }
+            "w9" -> {
+                val y=(2..9).random()
+                setField(14,10,7,10,8,10)
+                wallV(7, y,9)
+                for(i in y..10){ doPaint(7,i,true); doPaint(8,i,true) }
+                description = "Робот должен закрасить все клетки вокруг стены"
+                maxCycles = (10-y)*4+3
+                maxTries = 3
+            }
+            "w10" -> {
+                val y=(2..9).random()
+                val yy=(2..9).random()
+                val x=(2..5).random()
+                val xx=(8..11).random()
+                setField(14,10,1,10,14,10)
+                wallV(x,y,9)
+                wallV(xx,yy,9)
+                for(i in y..10){ doPaint(x,i,true); doPaint(x+1,i,true) }
+                for(i in yy..10){ doPaint(xx,i,true); doPaint(xx+1,i,true) }
+                description = "Робот должен закрасить все клетки вокруг стен"
+                maxTries = 3
+            }
+            "w11" -> {
+                val x=(2..6).random()
+                val xx=(9..12).random()
+                setField(15,5,x,2,x,2)
+                wallH(2,x,xx)
+                for(i in x..xx+2){ doPaint(i,2,true); doPaint(i,3,true) }
+                description = "Робот должен закрасить все клетки вокруг стены"
+                maxTries = 3
+            }
+            "w12" -> {
+                val x=(2..6).random()
+                val xx=(8..12).random()
+                val y=(2..5).random()
+                val yy=(7..10).random()
+                setField(14,12,x,y,x,y)
+                wallH(y,x,xx-1)
+                wallH(yy,x,xx-1)
+                wallV(x,y,yy-1)
+                wallV(xx,y,yy-1)
+                for(i in x..xx+1){ doPaint(i,y,true); doPaint(i,yy+1,true) }
+                for(i in y..yy){ doPaint(x,i,true); doPaint(xx+1,i,true) }
+                description = "Робот должен закрасить все клетки вокруг блока"
+                maxTries = 3
+            }
+            "w13" -> {
+                setField(5,10,3,10,3,1)
+                for(i in 1..maxy){
+                    val x=(0..maxy-i).random()
+                    if( x and 4 == 0) wallV(2,i,i)
+                    if( x and 2 == 0) wallV(3,i,i)
+                    if( x and 6 != 0) robot.endY = i
+                }
+                description = "Робот должен дойти до первого просвета. Используйте логическую операцию && (И)"
+                maxTries = 7
+            }
 	/*
-    "w6" -> {
-		val x=(..).random()%9+4
-		val y=(..).random()%7+3
-		setField(15,10,1,1,15,10)
-		wallH(y,1,x-1)
-		wallH(y,x+1,maxx)
-		description = "Робот оставил зарядное устройство в соседней комнате, чтобы в неё попасть, придётся отыскать дверь"
-	}
-    "w7" -> {
-		val i = ().random()%4+4
-		val x=(..).random()%5+9
-		val y=(..).random()%4+2
-		setField(15,10,1,8,x,y)
-		doPaint(i,8)
-		doPaint(i,y)
-		doPaint(x,y)
-		description = "Робот должен дойти до третьей закрашенной клетки"
-	}
-    "w8" -> {
-		val i = ().random()%4+6
-		val x=(..).random()%4+2
-		val y=(..).random()%4+9
-		setField(13,4,i,2,x-1,2)
-		wallH(2,x,y)
-		for(j in x until y)
-			doPaint(j,2,true)
-		description = "Робот должен закрасить все клетки над стеной"
-		maxCycles = (y-x)*2+y-i+4
-	}
-    "w9" -> {
-		val y=(..).random()%7+3
-		setField(14,10,7,10,8,10)
-		wallV(7,y,10)
-		for(i in y-1 until 10){ doPaint(7,i,true); doPaint(8,i,true) }
-		description = "Робот должен закрасить все клетки вокруг стены"
-		maxCycles = (10-y)*4+7
-	}
-    "w10" -> {
-		val y=(..).random()%7+3
-		yval y=(..).random()%7+3
-		val x=(..).random()%4+2
-		xval x=(..).random()%4+8
-		setField(14,10,1,10,14,10)
-		wallV(x,y,10)
-		wallV(xx,yy,10)
-		for(i in y-1 until 10){ doPaint(x,i,true); doPaint(x+1,i,true) }
-		for(i in yy-1 until 10){ doPaint(xx,i,true); doPaint(xx+1,i,true) }
-		description = "Робот должен закрасить все клетки вокруг стен"
-	}
-    "w11" -> {
-		val x=(..).random()%4+3
-		xval x=(..).random()%5+9
-		setField(15,5,x-1,2,x-1,2)
-		wallH(2,x,xx)
-		for(i in x-1 until xx+1){ doPaint(i,2,true); doPaint(i,3,true) }
-		description = "Робот должен закрасить все клетки вокруг стены"
-	}
-    "w12" -> {
-		val x=(..).random()%4+3
-		xval x=(..).random()%5+8
-		val y=(..).random()%3+3
-		yval y=(..).random()%4+7
-		setField(14,12,x-1,y-1,x-1,y-1)
-		wallH(y-1,x,xx)
-		wallH(yy,x,xx)
-		wallV(x-1,y,yy)
-		wallV(xx,y,yy)
-		for(i in x-1 until xx+1){ doPaint(i,y-1,true); doPaint(i,yy+1,true) }
-		for(i in y until yy){ doPaint(x-1,i,true); doPaint(xx+1,i,true) }
-		description = "Робот должен закрасить все клетки вокруг блока"
-	}
-    "w13" -> {
-		setField(5,10,3,10,3,1)
-		for(i in 2 i<=maxy i++){
-			val x=(..).random()%(maxy+1-i)
-			if(!(x&4)) wallV(2,i,i)
-			if(!(x&2)) wallV(3,i,i)
-			if((x&6)) endy = i
-		}
-		description = "Робот должен дойти до первого просвета. Используйте операцию && (И)"
-	}
     "w14" -> {
 		setField(5,10,3,10,3,1)
 		for(i in 2 i<=maxy i++){

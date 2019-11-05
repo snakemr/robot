@@ -12,7 +12,7 @@ import javax.swing.JLabel
 import kotlin.concurrent.fixedRateTimer
 import kotlin.random.Random
 
-class Robot(val window: RobotWindow, var x: Int, var y: Int, val endX: Int, val endY: Int) {
+class Robot(val window: RobotWindow, var x: Int, var y: Int, var endX: Int, var endY: Int) {
     private lateinit var image: JLabel
     private lateinit var blown: JLabel
     private lateinit var chrgr: JLabel
@@ -208,7 +208,7 @@ class Robot(val window: RobotWindow, var x: Int, var y: Int, val endX: Int, val 
             } + " в $count ${rusCounts(count)}."
             , "green")
 
-        if (result) {
+        if (result && window.tries >= window.maxTries) {
             val path1 = System.getenv("APPDATA") + "/robot-kotlin"
             val fname = System.getProperty("user.dir").substringAfterLast("\\")
             File(path1).mkdir()

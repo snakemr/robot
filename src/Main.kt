@@ -102,8 +102,10 @@ fun robot(taskname: String, speed: Int = 3) {
     while (true) {
         val result = frame.robot.check()
         //println(result)
-        if (result && frame.tries++ < frame.maxTries)
+        if (result && frame.tries++ < frame.maxTries) {
+            sleep(1100L - frame.speed * 200)
             frame.robot.paused = false
+        }
         task(taskname)
         kFunction?.call()
     }

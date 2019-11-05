@@ -1,5 +1,5 @@
 // Нажммите зелёную ► слева от этой строки и выберите "Run 'WKt'"
-fun main() = robot("w5", 5)    // Зелёным цветом выделен номер текущего задания
+fun main() = robot("w13", 5)    // Зелёным цветом выделен номер текущего задания
 // Прочитайте задание. Напишите решение в виде функции: fun wN() { решение }, где N - номер задания
 // Используйте команды робота:
 //          left(), right(), up(), down() - движение робота
@@ -44,4 +44,100 @@ fun w5() {
     left()
     while (cellIsPainted) down()
     up()
+}
+
+fun w6() {
+    while (freeFromDown) down()
+    while (wallFromDown) right()
+    while (freeFromDown) down()
+    while (freeFromRight) right()
+}
+
+fun w7() {
+    while (cellIsFree) right()
+    up()
+    while (cellIsFree) up()
+    right()
+    while (cellIsFree) right()
+}
+
+fun w8() {
+    while (wallFromDown) right()
+    left()
+    while (wallFromDown) {
+        paint()
+        left()
+    }
+}
+
+fun w9() {
+    while (wallFromRight) {
+        paint()
+        up()
+    }
+    paint()
+    right()
+    while (freeFromDown) {
+        paint()
+        down()
+    }
+    paint()
+}
+
+fun w10() {
+    while (freeFromRight) right()
+    w9()
+    while (freeFromRight) right()
+    w9()
+    while (freeFromRight) right()
+}
+
+fun w11() {
+    paint()
+    right()
+    while (wallFromDown) {
+        paint()
+        right()
+    }
+    paint()
+    down()
+    paint()
+    left()
+    while (wallFromUp) {
+        paint()
+        left()
+    }
+    paint()
+    up()
+}
+
+fun w12() {
+    paint()
+    right()
+    while (wallFromDown) {
+        paint()
+        right()
+    }
+    paint()
+    down()
+    while (wallFromLeft) {
+        paint()
+        down()
+    }
+    paint()
+    left()
+    while (wallFromUp) {
+        paint()
+        left()
+    }
+    paint()
+    up()
+    while (wallFromRight) {
+        paint()
+        up()
+    }
+}
+
+fun w13() {
+    while (wallFromLeft && wallFromRight) up()
 }
