@@ -5,6 +5,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.lang.Integer.max
 import java.lang.Thread.sleep
+import java.net.InetAddress
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.swing.ImageIcon
@@ -210,7 +211,7 @@ class Robot(val window: RobotWindow, var x: Int, var y: Int, var endX: Int, var 
 
         if (result && window.tries >= window.maxTries) {
             val path1 = System.getenv("APPDATA") + "/robot-kotlin"
-            val fname = System.getProperty("user.dir").substringAfterLast("\\")
+            val fname = System.getProperty("user.dir").substringAfterLast("\\") + " на " + InetAddress.getLocalHost().getHostName()
             File(path1).mkdir()
             val file1 = File("$path1/$fname.txt")
             if (!file1.exists()) file1.writeText("$fname")

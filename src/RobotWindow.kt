@@ -587,44 +587,44 @@ class RobotWindow(taskName: String) : JFrame()  {
                 description = "Последнее задание. Робот должен оказаться в итоге после последней стенки"
                 maxTries = 3
             }
+            "cc1" -> {
+                setField(31,7,1,1,31,7)
+                var s = 0
+                for(i in 1..6)
+                    for(j in 1..5)
+                        doPaint(++s,i,true)
+                description = "Вложенные циклы. Используйте цикл for внутри цикла for для повторения дейтсвий"
+                maxCycles = 66
+            }
+            "cc2" -> {
+                setField(22,7,1,1,22,7)
+                var s = 0
+                for(i in 1..6)
+                    for(j in 1..i)
+                        doPaint(++s,i,true)
+                description = "Используйте цикл for внутри цикла for для повторения дейтсвий (отличие от первой задачи - в один символ!)"
+                maxCycles = 48
+            }
+            "cc3" -> {
+                setField(22,7,1,1,22,7)
+                var s = 0
+                for(i in 6 downTo 1)
+                    for(j in 1..i)
+                        doPaint(++s,7-i,true)
+                description = "Пожалуй, имеет смысл запустить один из циклов в обратную сторону?"
+                maxCycles = 48
+            }
+            "cc4" -> {
+                setField(11,10,1,1,1,10)
+                for(j in 1..maxy){
+                    wallH(j,1, maxx)
+                    for(i in 1..fieldWidth)
+                        doPaint(i,j,true)
+                }
+                description = "Теперь в главный цикл вложены два других цикла"
+                maxCycles = 288
+            }
 	/*
-    "cc1" -> {
-		setField(31,7,1,1,31,7)
-		s=0
-		for(i in 0..6)
-			for(j in 0..5)
-				doPaint(++s,1+i,true)
-		description = "Вложенные циклы. Используйте цикл for внутри цикла for для повторения дейтсвий"
-		maxCycles = 66
-	}
-    "cc2" -> {
-		setField(22,7,1,1,22,7)
-		s=0
-		for(i in 0..6)
-			for(j in 0..i+1)
-				doPaint(++s,1+i,true)
-		description = "Используйте цикл for внутри цикла for для повторения дейтсвий (отличие от первой задачи - в один символ!)"
-		maxCycles = 48
-	}
-    "cc3" -> {
-		setField(22,7,1,1,22,7)
-		s=0
-		for(i in 6i>0i--)
-			for(j in 0..i)
-				doPaint(++s,7-i,true)
-		description = "Пожалуй, имеет смысл запустить один из циклов в обратную сторону?"
-		maxCycles = 48
-	}
-    "cc4" -> {
-		setField(11,10,1,1,1,10)
-		for(j in 1..maxy){
-			wallH(j,2,maxx)
-			for(i in 1 until maxx)
-				doPaint(i,j,true)
-		}
-		description = "Теперь в главный цикл вложены два других цикла"
-		maxCycles = 288
-	}
     "cc5" -> {
 		setField(14,9,1,1,1,9)
 		for(j in 1..maxy)

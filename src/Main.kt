@@ -96,7 +96,7 @@ fun robot(taskname: String, speed: Int = 3) {
     task(taskname.toLowerCase())
     frame.speed = speed
     frame.speedSlider.value = speed
-    val module = taskname.toUpperCase().filter { it.isLetter() }
+    val module = taskname.capitalize().filter { it.isLetter() }
     val kFunction = getFunctionFromFile(module, taskname.toLowerCase())
     kFunction?.call() ?: frame.error("ОШИБКА: В файле «${module.toLowerCase()}.kt» не определена функция-решение: fun $taskname() {...}")
     while (true) {
