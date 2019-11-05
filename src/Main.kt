@@ -7,6 +7,8 @@ import kotlin.reflect.jvm.kotlinFunction
 
 lateinit var frame: RobotWindow
 
+const val path2 = "\\\\192.168.4.1\\Документы\\.robot-kotlin"
+
 fun task(taskName: String) {
     if (::frame.isInitialized) {
         frame.restartTask()
@@ -99,7 +101,7 @@ fun robot(taskname: String, speed: Int = 3) {
     kFunction?.call() ?: frame.error("ОШИБКА: В файле «${module.toLowerCase()}.kt» не определена функция-решение: fun $taskname() {...}")
     while (true) {
         val result = frame.robot.check()
-        println(result)
+        //println(result)
         if (result && frame.tries++ < frame.maxTries)
             frame.robot.paused = false
         task(taskname)

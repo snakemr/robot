@@ -1,8 +1,12 @@
 import java.awt.Color
 import java.awt.Image
 import java.awt.Rectangle
+import java.io.File
+import java.io.FileNotFoundException
 import java.lang.Integer.max
 import java.lang.Thread.sleep
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.swing.ImageIcon
 import javax.swing.JLabel
 import kotlin.concurrent.fixedRateTimer
@@ -62,7 +66,7 @@ class Robot(val window: RobotWindow, var x: Int, var y: Int, val endX: Int, val 
     }
 
     fun doMove(dx: Int = 0, dy: Int = 0) {
-        println("$x $y $dx $dy")
+        //println("$x $y $dx $dy")
         tried = true
         if (stopped) return
         while (paused) sleep(1)
@@ -153,7 +157,7 @@ class Robot(val window: RobotWindow, var x: Int, var y: Int, val endX: Int, val 
     }
 
     fun check(): Boolean {
-        println("$x $y")
+        //println("$x $y")
         checked = true
         paused = true
         if (stopped && !broken || !tried) return false
@@ -203,6 +207,24 @@ class Robot(val window: RobotWindow, var x: Int, var y: Int, val endX: Int, val 
                 else -> ""
             } + " в $count ${rusCounts(count)}."
             , "green")
+
+        if (result) {
+            val path1 = System.getenv("APPDATA") + "/robot-kotlin"
+            val fname = System.getProperty("user.dir").substringAfterLast("\\")
+            File(path1).mkdir()
+            val file1 = File("$path1/$fname.txt")
+            if (!file1.exists()) file1.writeText("$fname")
+            var lines = file1.readLines().toMutableList()
+            lines.removeIf { it.startsWith(window.taskName) }
+            val sdf = SimpleDateFormat("dd.MM.yyyy hh:mm:ss")
+            val date = sdf.format(Date())
+            lines.add("${window.taskName}\t${window.tries}\t$date")
+            file1.writeText(lines.joinToString("\n"))
+            if (path2.length>0) try {
+                File(path2).mkdir()
+                File("$path2/$fname.txt").writeText(lines.joinToString("\n"))
+            } catch (f: FileNotFoundException) {}
+        }
         return result
     }
 

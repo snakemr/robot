@@ -192,10 +192,10 @@ class RobotWindow(taskName: String) : JFrame()  {
         wallH(fieldHeight, 0, fieldWidth - 1)
         wallV(0, 0, fieldHeight - 1)
         wallV(fieldWidth, 0, fieldHeight - 1)
-        for (r in field) {
+        /*for (r in field) {
             for (c in r) print("%3d".format(c))
             println()
-        }
+        }*/
     }
 
     private fun createFieldLayout() {
