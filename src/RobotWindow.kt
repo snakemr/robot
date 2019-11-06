@@ -320,31 +320,31 @@ class RobotWindow(taskName: String) : JFrame()  {
         when (taskName) {
             "c1" -> {
                 setField(11,1,1,1,11,1)
-                description = "Используйте команду right() в цикле for(_ in 1..10) или repeat(10), чтобы робот прошёл в конец коридора и смог благополучно зарядить батарею"
+                description = "Используйте команду <b>right()</b> в цикле <b>for(i in 1..10)</b> или <b>repeat(10){...}</b>, чтобы робот прошёл в конец коридора и смог благополучно зарядить батарею"
                 maxCycles=10
             }
             "c2" -> {
                 setField(11, 1, 1, 1, 11, 1)
                 for(i in 1 until fieldWidth) doPaint(i, 1, true)
-                description = "Используйте команды paint() и right() в блоке for или repeat {...} для перекраски жёлтых клеток в зелёный цвет"
+                description = "Используйте команды <b>paint()</b> и <b>right()</b> в блоке <b>for</b> или <b>repeat {...}</b> для перекраски жёлтых клеток в зелёный цвет"
                 maxCycles = 20
             }
             "c3" -> {
                 setField(11, 1, 1, 1, 11, 1)
                 for(i in 2..fieldWidth) doPaint(i, 1, true)
-                description = "Используйте команды right() и paint() в блоке for или repeat {...} для перекраски жёлтых клеток в зелёный цвет"
+                description = "Используйте команды <b>right()</b> и <b>paint()</b> в блоке <b>for</b> или <b>repeat {...}</b> для перекраски жёлтых клеток в зелёный цвет"
                 maxCycles = 20
             }
             "c4" -> {
                 setField(11, 1, 1, 1, 11, 1)
                 for(i in 1..fieldWidth) doPaint(i, 1, true)
-                description = "Используйте команды right() и paint() в блоке for или repeat {...} для перекраски жёлтых клеток в зелёный цвет"
+                description = "Используйте команды <b>right()</b> и <b>paint()</b> в блоке <b>for</b> или <b>repeat {...}</b> для перекраски жёлтых клеток в зелёный цвет"
                 maxCycles = 21
             }
             "c5" -> {
                 setField(11, 11, 1, 1, 11, 11)
                 for (i in 1..maxx) doPaint(i, i,true)
-                description = "Используйте команды right(), down() и paint() в блоке for или repeat"
+                description = "Используйте команды <b>right()</b>, <b>down()</b> и <b>paint()</b> в блоке <b>for</b> или <b>repeat</b>"
                 maxCycles = 30
             }
             "c6" -> {
@@ -357,7 +357,7 @@ class RobotWindow(taskName: String) : JFrame()  {
                 setField(11,2,11,1,1,1)
                 for(i in 2..fieldWidth){ doPaint(i,1,true); doPaint(i,2,true) }
                 for(i in 1 until 6){ wallV(i*2,0,0); wallV(i*2-1,1,1) }
-                description = "Используйте цикл for или блок repeat для прохождения повторяющихся участков"
+                description = "Используйте цикл <b>for</b> или блок <b>repeat</b> для прохождения повторяющихся участков"
                 maxCycles = 40
             }
             "c8" -> {
@@ -422,7 +422,7 @@ class RobotWindow(taskName: String) : JFrame()  {
             "w1" -> {
                 val i = (5..14).random()
                 setField(i,1,1,1, i,1)
-                description = "Используйте цикл с условием while, так как коридор теперь переменной длины"
+                description = "Используйте цикл с условием <b>while</b>, так как коридор теперь переменной длины"
                 maxCycles = maxx
                 maxTries = 5
             }
@@ -430,7 +430,7 @@ class RobotWindow(taskName: String) : JFrame()  {
                 val i = (5..14).random()
                 setField(i,1,1,1, i,1)
                 for(i in 1..maxx) doPaint(i,1,true)
-                description = "Используйте цикл с условием while, так как коридор переменной длины"
+                description = "Используйте цикл с условием <b>while</b>, так как коридор переменной длины"
                 maxCycles = maxx*2
                 maxTries = 3
             }
@@ -546,7 +546,7 @@ class RobotWindow(taskName: String) : JFrame()  {
                     if( x and 2 == 0) wallV(3,i,i)
                     if( x and 6 != 0) robot.endY = i
                 }
-                description = "Робот должен дойти до первого просвета. Используйте логическую операцию && (И)"
+                description = "Робот должен дойти до первого просвета. Используйте логическую операцию <b>&&</b> (И)"
                 maxTries = 7
             }
             "w14" -> {
@@ -557,7 +557,7 @@ class RobotWindow(taskName: String) : JFrame()  {
                     if(x and 2 == 0) wallV(3,i,i)
                     if(x and 3 == 3) robot.endY = i
                 }
-                description = "Робот должен дойти до первого сквозного просвета. Используйте логическую операцию || (ИЛИ)"
+                description = "Робот должен дойти до первого сквозного просвета. Используйте логическую операцию <b>||</b> (ИЛИ)"
                 maxTries = 7
             }
             "w15" -> {
@@ -570,7 +570,7 @@ class RobotWindow(taskName: String) : JFrame()  {
                     if(x and 3 == 3) robot.endX = i-1
                 }
                 doPaint(robot.endX+1,4,true)
-                description = "Робот должен закрасить клетку под первым закрашенным просветом. Выберите сами: И = &&, ИЛИ = ||"
+                description = "Робот должен закрасить клетку под первым закрашенным просветом. Выберите сами: И = <b>&&</b>, ИЛИ = <b>||</b>"
                 maxTries = 7
             }
             "w16" -> {
@@ -593,7 +593,7 @@ class RobotWindow(taskName: String) : JFrame()  {
                 for(i in 1..6)
                     for(j in 1..5)
                         doPaint(++s,i,true)
-                description = "Вложенные циклы. Используйте цикл for внутри цикла for для повторения дейтсвий"
+                description = "Вложенные циклы. Используйте цикл <b>for</b> внутри цикла <b>for</b> для повторения дейтсвий"
                 maxCycles = 66
             }
             "cc2" -> {
@@ -602,7 +602,7 @@ class RobotWindow(taskName: String) : JFrame()  {
                 for(i in 1..6)
                     for(j in 1..i)
                         doPaint(++s,i,true)
-                description = "Используйте цикл for внутри цикла for для повторения дейтсвий (отличие от первой задачи - в один символ!)"
+                description = "Используйте цикл <b>for</b> внутри цикла <b>for</b> для повторения дейтсвий (отличие от первой задачи - в один символ!)"
                 maxCycles = 48
             }
             "cc3" -> {
@@ -624,240 +624,260 @@ class RobotWindow(taskName: String) : JFrame()  {
                 description = "Теперь в главный цикл вложены два других цикла"
                 maxCycles = 288
             }
+            "cc5" -> {
+                setField(14,9,1,1,1,9)
+                for(j in 1..maxy)
+                    wallH(j,1-j%2,maxx-j%2)
+                description = "Снова в главный цикл вложены два других цикла"
+                maxCycles = 112
+            }
+            "cc6" -> {
+                setField(21,10,1,10,21,10)
+                for(j in 0..4){
+                    wallH(9,j*4+1,j*4+3)
+                    wallV(j*4+1,0,8)
+                    doPaint(j*4+5,1,true)
+                }
+                description = "Теперь в главный цикл вложены три других цикла"
+                maxCycles = 115
+            }
+            "cc7" -> {
+                setField(10,10,1,1,1,10)
+                for(i in 1..9)
+                    for(j in 1..i)
+                        doPaint(j,i,true)
+                description = "Теперь оба внутренних цикла зависят от счётчика внешнего цикла"
+                maxCycles = 144
+            }
+            "cc8" -> {
+                setField(10,10,1,1,1,10)
+                for(i in 1 .. 9)
+                    for(j in 1 .. 10-i)
+                        doPaint(j,i,true)
+                description = "Пожалуй, имеет смысл запустить один из циклов в обратную сторону?"
+                maxCycles = 144
+            }
+            "cc9" -> {
+                setField(10,10,10,1,10,10)
+                for(i in 1..9){
+                    doPaint(fieldWidth,i,true)
+                    if (i<9) wallH(i,0,8-i)
+                    wallH(i,10-i,maxx)
+                }
+                description = "Снова оба внутренних цикла зависят от счётчика внешнего цикла"
+                maxCycles = 108
+            }
+            "cc10" -> {
+                setField(15,8,1,1,1,8)
+                for(i in 1 .. 7)
+                    for(j in 1 .. i*2)
+                        doPaint(j,i,true)
+                description = "Теперь оба внутренних цикла вдвойне зависят от счётчика внешнего цикла"
+                maxCycles = 175
+            }
+            "cc11" -> {
+                setField(14,8,1,1,1,8)
+                for(i in 1 .. 7)
+                    for(j in 1 until i*2)
+                        doPaint(j,i,true)
+                description = "Снова оба внутренних цикла вдвойне (почти) зависят от счётчика внешнего цикла"
+                maxCycles = 154
+            }
+            "cc12" -> {
+                setField(33,7,1,1,1,7)
+                var x = 1
+                for (i in 1..6) {
+                    for (j in 1 .. x)
+                        doPaint(j, i, true)
+                    x *= 2
+                }
+                description = "Геометрическая прогрессия. Добавьте перед циклом дополнительную переменную: <b>var x = 1</b> и увеличивайте её в цикле вдвое: <b>x *= 2</b>"
+                maxCycles = 195
+            }
+            "cc13" -> {
+                setField(14,9,1,1,9,9)
+                for(i in 1 .. 4){
+                    doPaint(2*i+1,2*i,true)
+                    wallH(i*2-1,0,maxx-1)
+                    wallH(i*2,maxx-7+i,maxx)
+                }
+                description = "Добавьте перед циклом дополнительную переменную: <b>var x = 13</b> и уменьшайте её внутри цикла на два: <b>x −= 2</b>"
+                maxCycles = 84
+            }
+            "cc14" -> {
+                setField(14,9,1,1,5,9)
+                for(i in 1 .. 4){
+                    wallH(i*2-1,i-1,maxx-i)
+                    wallH(i*2,i+1,maxx-i+1)
+                    wallV(i,i*2-1,i*2)
+                    wallV(fieldWidth-i,i*2+0,i*2+1)
+                }
+                description = "Добавьте перед циклом дополнительную переменную: <b>var x = 1</b> и дважды за цикл уменьшайте её на единицу: <b>x−−</b>"
+                maxCycles = 84
+            }
+            "cc15" -> {
+                setField(15,9,8,1,8,9)
+                for(i in 1 .. 8)
+                    for(j in 1 .. i){
+                        doPaint(j+7,i,true)
+                        doPaint(9-j,i,true)
+                    }
+                description = "Опять пирамиды, только чуть сложнее. Попробуйте красить только на одном проходе внутреннего цикла"
+                maxCycles = 184
+            }
+            "cc16" -> {
+                setField(22,7,2,6,22,6)
+                for(i in 0 until 20)
+                    for(j in 1 .. i%5+1)
+                        doPaint(i+2,7-j,true)
+                description = "Это уже интересно: тройная вложенность (два цикла <b>⇅</b> внутри цикла <b>for →</b> внутри цикла ◢)"
+                maxCycles = 200
+            }
+            "cc17" -> {
+                setField(29,8,2,7,28,7)
+                var xx = 2
+                for(x in 1..6) {
+                    for(i in 1 .. x) {
+                        for (j in 1 .. i)
+                            doPaint(xx, 8 - j, true)
+                        xx++
+                    }
+                    xx++
+                }
+                description = "Тройная вложенность (два цикла <b>↑↓</b> внутри цикла <b>for →</b> внутри цикла <b>for</b> ◢)"
+                maxCycles = 196
+            }
+            "cc18" -> {
+                setField(12,8,1,1,1,8)
+                val xx = intArrayOf(6,8,4,3,10,2,5)
+                for(j in 0 until maxy){
+                    wallH(j+1,1, maxx)
+                    doPaint(xx[j], j+1,true)
+                    wallV(xx[j], j, j)
+                }
+                description = "А теперь внтуренним циклом будет <b>while</b>, так как длины строк переменные"
+                wallV(1,maxy,maxy)
+            }
+            "cc19" -> {
+                val y=(3..10).random()
+                setField(11,y+1,1,1,1,y+1)
+                for(j in 1..maxy){
+                    wallH(j,1, maxx)
+                    doPaint(fieldWidth, j,true)
+                }
+                description = "А теперь, наружный цикл - тоже <b>while</b>, так как высота поля - переменная"
+                maxTries = 2
+            }
+            "if1" -> {
+                val x=(0..1).random()
+                setField(5,5,2,3,4,3)
+                doPaint(4,3,true)
+                wallV(3,2,2)
+                wallH(2+x,2,2)
+                wallV(2,x*3,x*3+1)
+                description = "Робот должен обогнуть стену. Внимание, поле меняется! Используйте оператор ветвления <b>if()...else...</b>"
+                maxCycles = 5
+                maxTries = 5
+            }
+            "if2" -> {
+                val x=(0..15).random()
+                maxCycles = 9
+                setField(5,5,3,3,3,3)
+                doPaint(3,3,true)
+                if(x and 1 != 0){wallV(1,2,2); doPaint(2,3,true); maxCycles++}
+                if(x and 2 != 0){wallV(4,2,2); doPaint(4,3,true); maxCycles++}
+                if(x and 4 != 0){wallH(1,2,2); doPaint(3,2,true); maxCycles++}
+                if(x and 8 != 0){wallH(4,2,2); doPaint(3,4,true); maxCycles++}
+                description = "Закрасьте клетки около стен, используя оператор ветвления <b>if</b>"
+                maxTries = 3
+            }
+            "if3" -> {
+                val x=(0..3).random()
+                maxCycles = 3
+                setField(2,2,(x and 1)+1,(x and 2)/2+1,2-(x and 1),2-(x and 2)/2)
+                doPaint(2-(x and 1), 2-(x and 2)/2,true)
+                description = "Четыре варианта = три условия <b>if (...)</b>. Не забывайте о ветке <b>else</b> (иначе)"
+                maxTries = 5
+            }
+            "if4" -> {
+                val x=(0..3).random()
+                maxCycles = 2
+                setField(5,5,3,3,if(x and 1 != 0) 3 else (x and 2)+2, if(x and 1 != 0) (x and 2)+2 else 3)
+                doPaint(if(x and 1 != 0) 3  else (x and 2)+2, if (x and 1 != 0) (x and 2)+2 else 3, true)
+                if (x and 1 != 0) wallH(3-(x and 2)/2,2,2) else wallV(3-(x and 2)/2,2,2)
+                description = "Четыре варианта = три условия <b>if (...)</b>. Не забывайте о ветке <b>else</b> (иначе)"
+                maxTries = 7
+            }
+            "if5" -> {
+                val x=(0..3).random()
+                maxCycles = 6
+                setField(5,5,3,3,3,3)
+                doPaint(if(x and 1 != 0) (x and 2)+2 else 3, if (x and 1 != 0) 3 else (x and 2)+2, true)
+                doPaint(if(x and 1 != 0) 4-(x and 2) else 3, if (x and 1 != 0) 3 else 4-(x and 2), true)
+                if (x and 1 != 0) wallH(3-(x and 2)/2,2,2) else wallV(3-(x and 2)/2,2,2)
+                description = "Подумайте внимательно, здесь четыре варианта действий или два?"
+                maxTries = 7
+            }
+            "if6" -> {
+                val x=(0..3).random()
+                setField(5,5,3,3,if (x and 1 != 0) 3 else (x and 2)+2, if (x and 1 != 0) (x and 2)+2 else 3)
+                doPaint(if (x and 1 != 0) 3 else (x and 2)+2, if (x and 1 != 0) (x and 2)+2 else 3,true)
+                doPaint(if (x and 1 != 0) 3 else 4-(x and 2), if (x and 1 != 0) 4-(x and 2) else 3)
+                description = "Задание посложнее, с тремя вложенными операторами <b>if...else...</b>"
+                maxTries = 7
+            }
+            "if7" -> {
+                val x=(0..4).random()
+                maxCycles = 3
+                setField(4,4,(x and 1)+2,(x and 2)/2+2,3-(x and 1),3-(x and 2)/2)
+                doPaint(3-(x and 1),3-(x and 2)/2,true)
+                wallV((x and 1)*2+1,(x and 2)/2+1,(x and 2)/2+1)
+                wallH((x and 2)+1,(x and 1)+1,(x and 1)+1)
+                description = "Кажется, что-то подобное уже было? Попробуйте написать <b>fun if7() = if3()</b>"
+                maxTries = 5
+            }
+            "if8" -> {
+                val x=(0..3).random()
+                setField(6,6,2,2,if (x and 1 != 0) 2 else 5 - (x and 2)/2, if (x and 1 != 0) 5 - (x and 2)/2 else 2)
+                if (x and 1 != 0) wallH(1,1,1) else wallV(1,1,1)
+                doPaint(if (x and 1 != 0) 2 else 3, if (x and 1 != 0) 3 else 2,true)
+                doPaint(if (x and 1 != 0) 2 else 4, if (x and 1 != 0) 4 else 2,true)
+                if (x and 2 != 0){
+                    if (x and 1 != 0) wallH(4,1,1) else wallV(4,1,1)
+                }
+                else
+                    doPaint(if (x and 1 != 0) 2 else 5, if (x and 1 != 0) 5 else 2,true)
+                description = "Вложенные операторы <b>if</b> в обеих ветках главного <b>if...else...</b>"
+                maxTries = 7
+            }
+            "if9" -> {
+                val x= min(3, (0..4).random())
+                setField(5,5,3,3,3,3)
+                if (x and 1 != 0) wallH(2,1,1)
+                if (x and 2 != 0) wallH(3,3,3)
+                if ((x and 1 != 0)&&(x and 2 != 0)){ doPaint(3,2,true); doPaint(3,4,true) }
+                else doPaint(3,3,true)
+                description = "Используйте временные переменные для запоминания значений, например, <b>val u = wallFromUp</b>"
+                maxTries = 5
+            }
+            "if10" -> {
+                val x= max(0, (-1..3).random())
+                setField(5,5,3,3,3,3)
+                if (x and 1 != 0) doPaint(2,3)
+                if (x and 2 != 0) doPaint(4,3)
+                if (x and 3 != 0) doPaint(3,2,true) else doPaint(3,3,true)
+                description = "Используйте временные переменные для запоминания значений, например, <b>val r = cellIsPainted</b>"
+                maxTries = 5
+            }
+            "if11" -> {
+                val x=(0..2).random()
+                setField(5,5,2,2,4,2)
+                for(i in 0 until x) doPaint(3,i+2)
+                doPaint(3,x+2,true)
+                description = "Вложенный <b>if</b> внутри <b>if</b> внутри <b>if</b>"
+                maxTries = 5
+            }
 	/*
-    "cc5" -> {
-		setField(14,9,1,1,1,9)
-		for(j in 1..maxy)
-			wallH(j,2-j%2,maxx-j%2)
-		description = "Снова в главный цикл вложены два других цикла"
-		maxCycles = 112
-	}
-    "cc6" -> {
-		setField(21,10,1,10,21,10)
-		for(j in 0..5){
-			wallH(9,j*4+2,j*4+4)
-			wallV(j*4+1,1,9)
-			doPaint(j*4+5,1,true)
-		}
-		description = "Теперь в главный цикл вложены три других цикла"
-		maxCycles = 115
-	}
-    "cc7" -> {
-		setField(10,10,1,1,1,10)
-		for(i in 1 until 9)
-			for(j in 1 until i)
-				doPaint(j,i,true)
-		description = "Теперь оба внутренних цикла зависят от счётчика внешнего цикла"
-		maxCycles = 144
-	}
-    "cc8" -> {
-		setField(10,10,1,1,1,10)
-		for(i in 1 until 9)
-			for(j in 1 until 10-i)
-				doPaint(j,i,true)
-		description = "Пожалуй, имеет смысл запустить один из циклов в обратную сторону?"
-		maxCycles = 144
-	}
-    "cc9" -> {
-		setField(10,10,10,1,10,10)
-		for(i in 1 until 9){
-			doPaint(maxx,i,true)
-			wallH(i,1,9-i)
-			wallH(i,11-i,maxx)
-		}
-		description = "Снова оба внутренних цикла зависят от счётчика внешнего цикла"
-		maxCycles = 108
-	}
-    "cc10" -> {
-		setField(15,8,1,1,1,8)
-		for(i in 1 until 7)
-			for(j in 1 until i*2)
-				doPaint(j,i,true)
-		description = "Теперь оба внутренних цикла вдвойне зависят от счётчика внешнего цикла"
-		maxCycles = 175
-	}
-    "cc11" -> {
-		setField(14,8,1,1,1,8)
-		for(i in 1 until 7)
-			for(j in 1 until i*2-1)
-				doPaint(j,i,true)
-		description = "Снова оба внутренних цикла вдвойне (почти) зависят от счётчика внешнего цикла"
-		maxCycles = 154
-	}
-    "cc12" -> {
-		setField(33,7,1,1,1,7)
-		for(i in 1,x=1 until 6,x*=2)
-			for(j in 1 until x)
-				doPaint(j,i,true)
-		description = "Геометрическая прогрессия. На С она делается очень просто: i*=2 вместо арифметической i++"
-		maxCycles = 195
-	}
-    "cc13" -> {
-		setField(14,9,1,1,9,9)
-		for(i in 1 until 4){
-			doPaint(2*i+1,2*i,true)
-			wallH(i*2-1,2*i-1,maxx-1)
-			wallH(i*2,2*i+2,maxx)
-		}
-		description = "Здесь проще всего завести дополнительный уменьшаемый на 2 счётчик"
-		maxCycles = 84
-	}
-    "cc14" -> {
-		setField(14,9,1,1,5,9)
-		for(i in 1 until 4){
-			wallH(i*2-1,i,maxx-i)
-			wallH(i*2,i+2,maxx-i+1)
-			wallV(i,i*2,i*2+1)
-			wallV(maxx-i,i*2+1,i*2+(i<4?2:1))
-		}
-		description = "Здесь проще всего завести дополнительный уменьшаемый счётчик"
-		maxCycles = 84
-	}
-    "cc15" -> {
-		setField(15,9,8,1,8,9)
-		for(i in 1 until 8)
-			for(j in 1 until i){
-				doPaint(j+7,i,true)
-				doPaint(9-j,i,true)
-			}
-		description = "Опять пирамиды, только чуть сложнее"
-		maxCycles = 184
-	}
-    "cc16" -> {
-		setField(22,7,2,6,22,6)
-		for(i in 0..20)
-			for(j in 1 until i%5+1)
-				doPaint(i+2,7-j,true)
-		description = "Это уже интересно: два цикла for внутри цикла for внутри цикла for"
-		maxCycles = 200
-	}
-    "cc17" -> {
-		setField(29,8,2,7,28,7)
-		for(x=6,xx=1x>0x--)
-			for(i in 0 until x,xx++)
-				for(j in 1 until i)
-					doPaint(xx,8-j,true)
-		description = "Два цикла for внутри цикла for внутри цикла for с обратным отсчётом"
-		maxCycles = 196
-	}
-    "cc18" -> {
-		setField(12,8,1,1,1,8)
-		int xx[]={6,8,4,3,10,2,5}
-		for(j in 1..maxy){
-			wallH(j,2,maxx)
-			doPaint(xx[j-1],j,true)
-			wallV(xx[j-1],j,j)
-		}
-		description = "А теперь, внтуренний цикл - while, так как длины строк - переменные"
-		wallV(1,maxy,maxy)
-	}
-    "cc19" -> {
-		val y=(..).random()%10+3
-		setField(11,y+1,1,1,1,y+1)
-		for(j in 1..maxy){
-			wallH(j,2,maxx)
-			doPaint(maxx,j,true)
-		}
-		description = "А теперь, наружный цикл - while, так как высота поля - переменная"
-	}
-    "if1" -> {
-		val x=(..).random()%2
-		setField(5,5,2,3,4,3)
-		doPaint(4,3,true)
-		wallV(3,3,3)
-		wallH(2+x,3,3)
-		wallV(2,x*3+1,x*3+2)
-		description = "Робот должен обогнуть стену. Внимание, поле меняется! Используйте оператор условия if"
-		maxCycles = 5
-	}
-    "if2" -> {
-		val x=(..).random()%16
-		maxCycles = 9
-		setField(5,5,3,3,3,3)
-		doPaint(3,3,true)
-		if(x&1){wallV(1,3,3); doPaint(2,3,true)maxCycles++}
-		if(x&2){wallV(4,3,3); doPaint(4,3,true)maxCycles++}
-		if(x&4){wallH(1,3,3); doPaint(3,2,true)maxCycles++}
-		if(x&8){wallH(4,3,3); doPaint(3,4,true)maxCycles++}
-		description = "Закрасьте клетки около стен, используя оператор условия"
-	}
-    "if3" -> {
-		val x=(..).random()%4
-		maxCycles = 3
-		setField(2,2,(x&1)+1,(x&2)/2+1,2-(x&1),2-(x&2)/2)
-		doPaint(2-(x&1),2-(x&2)/2,true)
-		description = "Четыре варианта = три условия. Не забывайте о ветке else (иначе)"
-	}
-    "if4" -> {
-		val x=(..).random()%4
-		maxCycles = 2
-		setField(5,5,3,3,(x&1)?3:(x&2)+2, (x&1)?(x&2)+2:3)
-		doPaint((x&1)?3:(x&2)+2, (x&1)?(x&2)+2:3,true)
-		if (x&1) wallH(3-(x&2)/2,3,3) else wallV(3-(x&2)/2,3,3)
-		description = "Четыре варианта = три условия. Не забывайте о ветке else (иначе)"
-	}
-    "if5" -> {
-		val x=(..).random()%4
-		maxCycles = 6
-		setField(5,5,3,3,3,3)
-		doPaint((x&1)?(x&2)+2:3,(x&1)?3:(x&2)+2,true)
-		doPaint((x&1)?4-(x&2):3,(x&1)?3:4-(x&2),true)
-		if (x&1) wallH(3-(x&2)/2,3,3) else wallV(3-(x&2)/2,3,3)
-		description = "Здесь четыре варианта или два?"
-	}
-    "if6" -> {
-		val x=(..).random()%4
-		setField(5,5,3,3,(x&1)?3:(x&2)+2, (x&1)?(x&2)+2:3)
-		doPaint((x&1)?3:(x&2)+2, (x&1)?(x&2)+2:3,true)
-		doPaint((x&1)?3:4-(x&2), (x&1)?4-(x&2):3)
-		description = "Сложное задание со вложенными операторами if"
-	}
-    "if7" -> {
-		val x=(..).random()%4
-		maxCycles = 3
-		setField(4,4,(x&1)+2,(x&2)/2+2,3-(x&1),3-(x&2)/2)
-		doPaint(3-(x&1),3-(x&2)/2,true)
-		wallV((x&1)*2+1,(x&2)/2+2,(x&2)/2+2)
-		wallH((x&2)+1,(x&1)+2,(x&1)+2)
-		description = "См. задание №2?"
-	}
-    "if8" -> {
-		val x=(..).random()%4
-		setField(6,6,2,2,(x&1)?2:4+!(x&2),(x&1)?4+!(x&2):2)
-		if (x&1) wallH(1,2,2) else wallV(1,2,2)
-		doPaint((x&1)?2:3,(x&1)?3:2,true)
-		doPaint((x&1)?2:4,(x&1)?4:2,true)
-		if (x&2){
-			if (x&1) wallH(4,2,2) else wallV(4,2,2)
-		}
-		else
-			doPaint((x&1)?2:5,(x&1)?5:2,true)
-		description = "Вложенные операторы if в обеих ветках главного if"
-	}
-    "if9" -> {
-		val x=(..).random()%4
-		setField(5,5,3,3,3,3)
-		if (x&1) wallH(2,2,2)
-		if (x&2) wallH(3,4,4)
-		if ((x&1)&&(x&2)){ doPaint(3,2,true); doPaint(3,4,true) }
-		else doPaint(3,3,true)
-		description = "Используем логические (bool) переменные для запоминания значений"
-	}
-    "if10" -> {
-		val x=(..).random()%4
-		setField(5,5,3,3,3,3)
-		if (x&1) doPaint(2,3)
-		if (x&2) doPaint(4,3)
-		if (x&3) doPaint(3,2,true) else doPaint(3,3,true)
-		description = "Используем логические (bool) переменные для запоминания значений"
-	}
-    "if11" -> {
-		val x=(..).random()%3
-		setField(5,5,2,2,4,2)
-		for(i in 0..x) doPaint(3,i+2)
-		doPaint(3,x+2,true)
-		description = "Вложенный if внутри if внутри if"
-	}
     "cif1" -> {
 		setField(14,3,1,2,13,2)
 		wallV(13,2,2)
@@ -868,9 +888,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		setField(14,3,1,2,13,2)
 		wallV(13,2,2)
 		for(i in 2..14){
-			val x=(..).random()%4
-			if (x&1) wallH(1,i,i)
-			if (x&2) wallH(2,i,i)
+			val x=(0..3).random()
+			if (x and 1) wallH(1,i,i)
+			if (x and 2) wallH(2,i,i)
 			if (x) doPaint(i,2,true)
 		}
 		description = "Используйте вложенный if внутри цикла while для закраски клеток около стен. Помните, И=&&, ИЛИ=||"
@@ -879,9 +899,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		setField(14,3,1,2,13,2)
 		wallV(13,2,2)
 		for(i in 2..14){
-			val x=(..).random()%4
-			if (x&1) wallH(1,i,i)
-			if (x&2) wallH(2,i,i)
+			val x=(0..3).random()
+			if (x and 1) wallH(1,i,i)
+			if (x and 2) wallH(2,i,i)
 			if (x==3) doPaint(i,2,true)
 		}
 		description = "Используйте вложенный if внутри цикла while для закраски клеток между стен. Помните, И=&&, ИЛИ=||"
@@ -890,9 +910,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		setField(14,3,1,2,13,2)
 		wallV(13,2,2)
 		for(i in 2..14){
-			val x=(..).random()%4
-			if (x&1) wallH(1,i,i)
-			if (x&2) wallH(2,i,i)
+			val x=(0..3).random()
+			if (x and 1) wallH(1,i,i)
+			if (x and 2) wallH(2,i,i)
 			if (x==1) doPaint(i,2,true)
 		}
 		description = "Используйте вложенный if внутри цикла while для закраски нужных клеток. Помните, И=&&, ИЛИ=||"
@@ -901,9 +921,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		setField(14,3,1,2,13,2)
 		wallV(13,2,2)
 		for(i in 2..14){
-			val x=(..).random()%4
-			if (x&1) wallH(1,i,i)
-			if (x&2) wallH(2,i,i)
+			val x=(0..3).random()
+			if (x and 1) wallH(1,i,i)
+			if (x and 2) wallH(2,i,i)
 			if (x!=1) doPaint(i,2,true)
 		}
 		description = "Используйте вложенный if внутри цикла while для закраски нужных клеток. Помните, И=&&, ИЛИ=||"
@@ -912,9 +932,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		setField(14,3,1,2,13,2)
 		wallV(13,2,2)
 		for(i in 2..14){
-			val x=(..).random()%4
-			if (x&1) wallH(1,i,i)
-			if (x&2) wallH(2,i,i)
+			val x=(0..3).random()
+			if (x and 1) wallH(1,i,i)
+			if (x and 2) wallH(2,i,i)
 			if (x!=3) doPaint(i,2,true)
 		}
 		description = "Используйте вложенный if внутри цикла while для закраски нужных клеток. Помните, И=&&, ИЛИ=||"
@@ -924,9 +944,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		wallV(13,2,2)
 		maxCycles = 12
 		for(i in 2..14){
-			val x=(..).random()%4
-			if (x&1) wallH(1,i,i) else { doPaint(i,1,true) maxCycles+=3 }
-			if (x&2) wallH(2,i,i) else { doPaint(i,3,true) maxCycles+=3 }
+			val x=(0..3).random()
+			if (x and 1) wallH(1,i,i) else { doPaint(i,1,true) maxCycles+=3 }
+			if (x and 2) wallH(2,i,i) else { doPaint(i,3,true) maxCycles+=3 }
 		}
 		description = "Используйте вложенные операторы if внутри цикла while для закраски нужных клеток"
 	}
@@ -935,8 +955,8 @@ class RobotWindow(taskName: String) : JFrame()  {
 		wallV(13,2,2)
 		for(i in 2..14){
 			val x=(..).random()%3
-			if (x&1) {wallH(1,i,i) doPaint(i,3,true) }
-			if (x&2) {wallH(2,i,i) doPaint(i,1,true) }
+			if (x and 1) {wallH(1,i,i) doPaint(i,3,true) }
+			if (x and 2) {wallH(2,i,i) doPaint(i,1,true) }
 		}
 		description = "Используйте вложенные операторы if внутри цикла while для закраски нужных клеток"
 	}
@@ -944,9 +964,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		setField(14,3,1,2,13,2)
 		wallV(13,2,2)
 		for(i in 2..14){
-			val x=(..).random()%4
-			if (x&1) wallH(1,i,i)
-			if (x&2) wallH(2,i,i)
+			val x=(0..3).random()
+			if (x and 1) wallH(1,i,i)
+			if (x and 2) wallH(2,i,i)
 			if (x==1) doPaint(i,3,true)
 			if (x==2) doPaint(i,1,true)
 			if (x==3) doPaint(i,2,true)
@@ -958,10 +978,10 @@ class RobotWindow(taskName: String) : JFrame()  {
 		wallV(13,2,2)
 		for(i in 2..14){
 			val x=(..).random()%8
-			if (x&1) wallH(1,i,i)
-			if (x&2) wallH(2,i,i)
-			if (x&4) doPaint(i,2)
-			if ((x&6)==4) doPaint(i,3,true)
+			if (x and 1) wallH(1,i,i)
+			if (x and 2) wallH(2,i,i)
+			if (x and 4) doPaint(i,2)
+			if ((x and 6)==4) doPaint(i,3,true)
 		}
 		description = "Используйте вложенный if внутри цикла while для закраски нужных клеток. Помните, И=&&, ИЛИ=||"
 	}
@@ -970,9 +990,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		wallV(13,2,2)
 		for(i in 2..14){
 			val x=(..).random()%8
-			if (x&1) wallH(1,i,i)
-			if (x&2) wallH(2,i,i)
-			if (x&4) doPaint(i,2)
+			if (x and 1) wallH(1,i,i)
+			if (x and 2) wallH(2,i,i)
+			if (x and 4) doPaint(i,2)
 			if (x==5) doPaint(i,3,true)
 		}
 		description = "Используйте два логических И (&&) в условии if для закраски нужных клеток"
@@ -982,10 +1002,10 @@ class RobotWindow(taskName: String) : JFrame()  {
 		wallV(13,2,2)
 		for(i in 2..14){
 			val x=(..).random()%8
-			if (x&1) wallH(1,i,i)
-			if (x&2) wallH(2,i,i)
-			if (x&4) doPaint(i,2)
-			if ((x&5)==4 || !x) doPaint(i,1,true)
+			if (x and 1) wallH(1,i,i)
+			if (x and 2) wallH(2,i,i)
+			if (x and 4) doPaint(i,2)
+			if ((x and 5)==4 || !x) doPaint(i,1,true)
 		}
 		description = "Используйте комбинацию логических И (&&) и ИЛИ (||) в условии if для закраски нужных клеток"
 	}
@@ -994,9 +1014,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		wallV(13,2,2)
 		for(i in 2..14){
 			val x=(..).random()%8
-			if (x&1) wallH(1,i,i)
-			if (x&2) wallH(2,i,i)
-			if (x&4) doPaint(i,2)
+			if (x and 1) wallH(1,i,i)
+			if (x and 2) wallH(2,i,i)
+			if (x and 4) doPaint(i,2)
 			if (x==6 || !x) doPaint(i,1,true)
 		}
 		description = "Используйте комбинацию двух логических И (&&) и одного ИЛИ (||) в условии if для закраски нужных клеток"
@@ -1006,9 +1026,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		wallH(2,1,1)
 		wallV(13,2,2)
 		for(i in 2..14){
-			val x=(..).random()%4
-			if (x&1) wallH(2,i,i)
-			if (x&2) doPaint(i,3)
+			val x=(0..3).random()
+			if (x and 1) wallH(2,i,i)
+			if (x and 2) doPaint(i,3)
 			if (x==2) doPaint(i,4,true)
 		}
 		description = "Вложенные if внутри if внутри while. Не забывайте возвращать робота в главную строку"
@@ -1019,17 +1039,17 @@ class RobotWindow(taskName: String) : JFrame()  {
 		wallH(2,1,1)
 		wallV(13,2,2)
 		for(i in 2..14){
-			val x=(..).random()%4
-			if (x&1) doPaint(i,1)
-			if (x&2) doPaint(i,3)
+			val x=(0..3).random()
+			if (x and 1) doPaint(i,1)
+			if (x and 2) doPaint(i,3)
 			if (x==3) doPaint(i,2,true)
 		}
 		description = "Используем логические (bool) переменные для запоминания значений"
 	}
     "cif16" -> {
-		val x=(..).random()%4
+		val x=(0..3).random()
 		maxCycles = 16
-		setField(9,9,(x&1)*8+1,(x&2)*4+1,9-(x&1)*8,9-(x&2)*4)
+		setField(9,9,(x and 1)*8+1,(x and 2)*4+1,9-(x and 1)*8,9-(x and 2)*4)
 		description = "Отправьте робота в противоположный угол. while внтури if..else"
 	}
     "cif17" -> {
@@ -1144,7 +1164,7 @@ class RobotWindow(taskName: String) : JFrame()  {
     "cnt6" -> {
 		val x=(..).random()%6+1
 		while ((val y=(..).random()%6+1)==x)
-		setField(15,5,8,3,x<y?8-x:8+y,3)
+		setField(15,5,8,3,x<y?8-x else 8+y,3)
 		wallV(7-x,2,4) wallV(8+y,2,4)
 		description = "Робот должен определить, какая стена ближе, и переместиться к ней"
 	}
@@ -1154,7 +1174,7 @@ class RobotWindow(taskName: String) : JFrame()  {
 		xx = (..).random()%(y-x-1)+x+1
 		setField(16,4,xx,2,xx,3)
 		wallH(2,x,y)
-		wallV((..).random()%2?x-1:y,1,2)
+		wallV((..).random()%2?x-1 else y,1,2)
 		description = "Робот должен обойти стену с одной из сторон"
 	}
     "cnt8" -> {
@@ -1180,7 +1200,7 @@ class RobotWindow(taskName: String) : JFrame()  {
 	}
     "cnt10" -> {
 		val x=(..).random()%8+2
-		y=x>6?x:6
+		y=x>6?x else 6
 		setField(10,3,2,2,y+1,2)
 		wallH(2,2,x)
 		for(i in 2 until y) doPaint(i,2,true)
@@ -1252,10 +1272,10 @@ class RobotWindow(taskName: String) : JFrame()  {
 		description = "Закрасьте прямоугольник в шахматном порядке"
 	}
     "mix3" -> {
-		val x=(..).random()%4+6
-		val y=(..).random()%4+2
-		xval x=(..).random()%4+2
-		yval y=(..).random()%4+6
+		val x=(0..3).random()+6
+		val y=(0..3).random()+2
+		xval x=(0..3).random()+2
+		yval y=(0..3).random()+6
 		setField(10,10,x,y,x,y)
 		for(i in xx until x)
 			for(j in y until yy)
@@ -1294,9 +1314,9 @@ class RobotWindow(taskName: String) : JFrame()  {
     "mix7" -> {
 		setField(10,10,1,1,1,10)
 		for (i in 1 i<10 i++){
-		  int f=(..).random()%4
-		  if (f&1) doPaint(1,i)
-		  if (f&2) doPaint(10,i)
+		  int f=(0..3).random()
+		  if (f and 1) doPaint(1,i)
+		  if (f and 2) doPaint(10,i)
 		  if (f==3)
 			  for (j in 2 j<10 j++) doPaint(j,i,true)
 		}
@@ -1306,9 +1326,9 @@ class RobotWindow(taskName: String) : JFrame()  {
 		setField(11,15,1,1,1,15)
 		for (i in 1 i<15 i++){
 		  int f=(..).random()%8
-		  if (f&1) doPaint(1,i)
-		  if (f&2) doPaint(11,i)
-		  if ((f&4) && f!=7) doPaint((..).random()%9+2,i)
+		  if (f and 1) doPaint(1,i)
+		  if (f and 2) doPaint(11,i)
+		  if ((f and 4) && f!=7) doPaint((..).random()%9+2,i)
 		  if (f==7){
 			  for (j in 2 j<11 j++) doPaint(j,i,true)
 			  doPaints((..).random()%9+2,i)
