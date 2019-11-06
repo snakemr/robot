@@ -56,6 +56,9 @@ class RobotWindow(taskName: String) : JFrame()  {
                 when (taskName.filter { it.isLetter() }) {
                     "c"     -> "Циклы со счётчиком: for, repeat"
                     "w"     -> "Цикл с условием while"
+                    "cc"    -> "Вложенные циклы"
+                    "if"    -> "Оператор ветвления"
+                    "cif"   -> "Ветвления и циклы"
                     else    -> ""
                 }
         this.taskName = taskName
@@ -877,159 +880,164 @@ class RobotWindow(taskName: String) : JFrame()  {
                 description = "Вложенный <b>if</b> внутри <b>if</b> внутри <b>if</b>"
                 maxTries = 5
             }
+            "cif1" -> {
+                setField(14,3,1,2,13,2)
+                wallV(13,1,1)
+                for(i in 1..12)
+                    if((0..1).random() != 0) {wallH(1,i,i); doPaint(i+1,2,true) }
+                description = "Используйте вложенный <b>if</b> внутри цикла <b>while</b> для закраски клеток под стенами"
+                maxTries = 3
+            }
+            "cif2" -> {
+                setField(14,3,1,2,13,2)
+                wallV(13,1,1)
+                for(i in 1..12){
+                    val x=(0..3).random()
+                    if (x and 1 != 0) wallH(1,i,i)
+                    if (x and 2 != 0) wallH(2,i,i)
+                    if (x != 0) doPaint(i+1,2,true)
+                }
+                description = "Используйте вложенный <b>if</b> внутри цикла <b>while</b> для закраски клеток около стен. Помните, И=<b>&&</b>, ИЛИ=<b>||</b>"
+                maxTries = 3
+            }
+            "cif3" -> {
+                setField(14,3,1,2,13,2)
+                wallV(13,1,1)
+                for(i in 1..12){
+                    val x=(0..3).random()
+                    if (x and 1 != 0) wallH(1,i,i)
+                    if (x and 2 != 0) wallH(2,i,i)
+                    if (x==3) doPaint(i+1,2,true)
+                }
+                description = "Используйте вложенный <b>if</b> внутри цикла <b>while</b> для закраски клеток между стен. Помните, И=<b>&&</b>, ИЛИ=<b>||</b>"
+                maxTries = 3
+            }
+            "cif4" -> {
+                setField(14,3,1,2,13,2)
+                wallV(13,1,1)
+                for(i in 1..12){
+                    val x=(0..3).random()
+                    if (x and 1 != 0) wallH(1,i,i)
+                    if (x and 2 != 0) wallH(2,i,i)
+                    if (x==1) doPaint(i+1,2,true)
+                }
+                description = "Используйте вложенный <b>if</b> внутри цикла <b>while</b> для закраски нужных клеток. Помните, И=<b>&&</b>, ИЛИ=<b>||</b>"
+                maxTries = 3
+            }
 	/*
-    "cif1" -> {
-		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14) if((..).random()%2) {wallH(1,i,i) doPaint(i,2,true) }
-		description = "Используйте вложенный if внутри цикла while для закраски клеток под стенами"
-	}
-    "cif2" -> {
-		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
-			val x=(0..3).random()
-			if (x and 1) wallH(1,i,i)
-			if (x and 2) wallH(2,i,i)
-			if (x) doPaint(i,2,true)
-		}
-		description = "Используйте вложенный if внутри цикла while для закраски клеток около стен. Помните, И=&&, ИЛИ=||"
-	}
-    "cif3" -> {
-		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
-			val x=(0..3).random()
-			if (x and 1) wallH(1,i,i)
-			if (x and 2) wallH(2,i,i)
-			if (x==3) doPaint(i,2,true)
-		}
-		description = "Используйте вложенный if внутри цикла while для закраски клеток между стен. Помните, И=&&, ИЛИ=||"
-	}
-    "cif4" -> {
-		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
-			val x=(0..3).random()
-			if (x and 1) wallH(1,i,i)
-			if (x and 2) wallH(2,i,i)
-			if (x==1) doPaint(i,2,true)
-		}
-		description = "Используйте вложенный if внутри цикла while для закраски нужных клеток. Помните, И=&&, ИЛИ=||"
-	}
     "cif5" -> {
 		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
+		wallV(13,1,1)
+		for(i in 1..12){
 			val x=(0..3).random()
 			if (x and 1) wallH(1,i,i)
 			if (x and 2) wallH(2,i,i)
-			if (x!=1) doPaint(i,2,true)
+			if (x!=1) doPaint(i+1,2,true)
 		}
 		description = "Используйте вложенный if внутри цикла while для закраски нужных клеток. Помните, И=&&, ИЛИ=||"
 	}
     "cif6" -> {
 		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
+		wallV(13,1,1)
+		for(i in 1..12){
 			val x=(0..3).random()
 			if (x and 1) wallH(1,i,i)
 			if (x and 2) wallH(2,i,i)
-			if (x!=3) doPaint(i,2,true)
+			if (x!=3) doPaint(i+1,2,true)
 		}
 		description = "Используйте вложенный if внутри цикла while для закраски нужных клеток. Помните, И=&&, ИЛИ=||"
 	}
     "cif7" -> {
 		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
+		wallV(13,1,1)
 		maxCycles = 12
-		for(i in 2..14){
+		for(i in 1..12){
 			val x=(0..3).random()
-			if (x and 1) wallH(1,i,i) else { doPaint(i,1,true) maxCycles+=3 }
-			if (x and 2) wallH(2,i,i) else { doPaint(i,3,true) maxCycles+=3 }
+			if (x and 1) wallH(1,i,i) else { doPaint(i+1,1,true) maxCycles+=3 }
+			if (x and 2) wallH(2,i,i) else { doPaint(i+1,3,true) maxCycles+=3 }
 		}
 		description = "Используйте вложенные операторы if внутри цикла while для закраски нужных клеток"
 	}
     "cif8" -> {
 		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
+		wallV(13,1,1)
+		for(i in 1..12){
 			val x=(..).random()%3
-			if (x and 1) {wallH(1,i,i) doPaint(i,3,true) }
-			if (x and 2) {wallH(2,i,i) doPaint(i,1,true) }
+			if (x and 1) {wallH(1,i,i) doPaint(i+1,3,true) }
+			if (x and 2) {wallH(2,i,i) doPaint(i+1,1,true) }
 		}
 		description = "Используйте вложенные операторы if внутри цикла while для закраски нужных клеток"
 	}
     "cif9" -> {
 		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
+		wallV(13,1,1)
+		for(i in 1..12){
 			val x=(0..3).random()
 			if (x and 1) wallH(1,i,i)
 			if (x and 2) wallH(2,i,i)
-			if (x==1) doPaint(i,3,true)
-			if (x==2) doPaint(i,1,true)
-			if (x==3) doPaint(i,2,true)
+			if (x==1) doPaint(i+1,3,true)
+			if (x==2) doPaint(i+1,1,true)
+			if (x==3) doPaint(i+1,2,true)
 		}
 		description = "Используйте вложенные операторы if..else внутри цикла while для закраски нужных клеток"
 	}
     "cif10" -> {
 		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
+		wallV(13,1,1)
+		for(i in 1..12){
 			val x=(..).random()%8
 			if (x and 1) wallH(1,i,i)
 			if (x and 2) wallH(2,i,i)
-			if (x and 4) doPaint(i,2)
-			if ((x and 6)==4) doPaint(i,3,true)
+			if (x and 4) doPaint(i+1,2)
+			if ((x and 6)==4) doPaint(i+1,3,true)
 		}
 		description = "Используйте вложенный if внутри цикла while для закраски нужных клеток. Помните, И=&&, ИЛИ=||"
 	}
     "cif11" -> {
 		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
+		wallV(13,1,1)
+		for(i in 1..12){
 			val x=(..).random()%8
 			if (x and 1) wallH(1,i,i)
 			if (x and 2) wallH(2,i,i)
-			if (x and 4) doPaint(i,2)
-			if (x==5) doPaint(i,3,true)
+			if (x and 4) doPaint(i+1,2)
+			if (x==5) doPaint(i+1,3,true)
 		}
 		description = "Используйте два логических И (&&) в условии if для закраски нужных клеток"
 	}
     "cif12" -> {
 		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
+		wallV(13,1,1)
+		for(i in 1..12){
 			val x=(..).random()%8
 			if (x and 1) wallH(1,i,i)
 			if (x and 2) wallH(2,i,i)
-			if (x and 4) doPaint(i,2)
-			if ((x and 5)==4 || !x) doPaint(i,1,true)
+			if (x and 4) doPaint(i+1,2)
+			if ((x and 5)==4 || !x) doPaint(i+1,1,true)
 		}
 		description = "Используйте комбинацию логических И (&&) и ИЛИ (||) в условии if для закраски нужных клеток"
 	}
     "cif13" -> {
 		setField(14,3,1,2,13,2)
-		wallV(13,2,2)
-		for(i in 2..14){
+		wallV(13,1,1)
+		for(i in 1..12){
 			val x=(..).random()%8
 			if (x and 1) wallH(1,i,i)
 			if (x and 2) wallH(2,i,i)
-			if (x and 4) doPaint(i,2)
-			if (x==6 || !x) doPaint(i,1,true)
+			if (x and 4) doPaint(i+1,2)
+			if (x==6 || !x) doPaint(i+1,1,true)
 		}
 		description = "Используйте комбинацию двух логических И (&&) и одного ИЛИ (||) в условии if для закраски нужных клеток"
 	}
     "cif14" -> {
 		setField(14,4,1,2,13,2)
 		wallH(2,1,1)
-		wallV(13,2,2)
-		for(i in 2..14){
+		wallV(13,1,1)
+		for(i in 1..12){
 			val x=(0..3).random()
 			if (x and 1) wallH(2,i,i)
-			if (x and 2) doPaint(i,3)
-			if (x==2) doPaint(i,4,true)
+			if (x and 2) doPaint(i+1,3)
+			if (x==2) doPaint(i+1,4,true)
 		}
 		description = "Вложенные if внутри if внутри while. Не забывайте возвращать робота в главную строку"
 	}
@@ -1037,12 +1045,12 @@ class RobotWindow(taskName: String) : JFrame()  {
 		setField(14,3,1,2,13,2)
 		wallH(1,1,1)
 		wallH(2,1,1)
-		wallV(13,2,2)
-		for(i in 2..14){
+		wallV(13,1,1)
+		for(i in 1..12){
 			val x=(0..3).random()
-			if (x and 1) doPaint(i,1)
-			if (x and 2) doPaint(i,3)
-			if (x==3) doPaint(i,2,true)
+			if (x and 1) doPaint(i+1,1)
+			if (x and 2) doPaint(i+1,3)
+			if (x==3) doPaint(i+1,2,true)
 		}
 		description = "Используем логические (bool) переменные для запоминания значений"
 	}
