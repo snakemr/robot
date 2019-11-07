@@ -1,5 +1,5 @@
 // Нажммите зелёную ► слева от этой строки и выберите "Run 'cifKt'"
-fun main() = robot("cif17", 5)    // Зелёным цветом выделен номер текущего задания
+fun main() = robot("cif22", 5)    // Зелёным цветом выделен номер текущего задания
 // Прочитайте задание. Напишите решение в виде функции: fun cifN() { решение }, где N - номер задания
 // Используйте команды робота:
 //          left(), right(), up(), down() - движение робота
@@ -199,4 +199,59 @@ fun cif17() {
         while (freeFromLeft) left()
     else
         while (freeFromRight) right()
+}
+
+fun cif18() {
+    while (freeFromRight) {
+        right()
+        if(cellIsFree) break
+        down()
+        if(cellIsFree) break
+        up()
+    }
+}
+
+fun cif19() {
+    while (freeFromRight) {
+        right()
+        if(freeFromUp) break
+        down()
+        if(freeFromDown) break
+        up()
+    }
+}
+
+fun cif20() {
+    var u = freeFromUp
+    var d = freeFromDown
+    while (freeFromRight) {
+        right()
+        u = freeFromUp
+        if(u && d) break
+        down()
+        d = freeFromDown
+        if(u && d) break
+        up()
+    }
+}
+
+fun cif21() {
+    while (cellIsFree && freeFromRight) right()
+    if (cellIsFree) {
+        left()
+        while (cellIsFree && freeFromLeft) left()
+    }
+    do {
+        down()
+    }
+    while (cellIsFree)
+}
+
+fun cif22() {
+    while (freeFromRight && wallFromDown && wallFromUp) right()
+    if (wallFromDown && wallFromUp)
+        while (freeFromLeft && wallFromDown && wallFromUp) left()
+    if (freeFromUp) up() else down()
+    while (freeFromLeft) left()
+    while (freeFromUp) up()
 }

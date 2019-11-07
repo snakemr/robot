@@ -155,6 +155,22 @@ class RobotWindow(taskName: String) : JFrame()  {
         }
     }
 
+    fun unWallH(y: Int, x1: Int, x2: Int) {
+        val rangeH = 1..fieldHeight
+        for (i in checkCoordX(x1)..checkCoordX(x2)) {
+            if (y in rangeH) field[y-1][i] = field[y-1][i] and CellState.WallFromDown.mask.inv()
+            if (y+1 in rangeH) field[y][i] = field[y][i] and CellState.WallFromUp.mask.inv()
+        }
+    }
+
+    fun unWallV(x: Int, y1: Int, y2: Int) {
+        val rangeW = 1..fieldWidth
+        for (i in checkCoordY(y1)..checkCoordY(y2)) {
+            if (x in rangeW) field[i][x-1] = field[i][x-1] and CellState.WallFromRight.mask.inv()
+            if (x+1 in rangeW) field[i][x] = field[i][x] and CellState.WallFromLeft.mask.inv()
+        }
+    }
+
     fun doPaint(x: Int, y: Int, needToPaint: Boolean = false) {
         val cx = checkCoordX(x-1)
         val cy = checkCoordY(y-1)
@@ -1091,60 +1107,63 @@ class RobotWindow(taskName: String) : JFrame()  {
                 description = "Дойти до конца коридора переменной конфигурации. Цикл <b>while</b> внтури ветвления <b>if..else</b>"
                 maxTries = 5
             }
+            "cif18" -> {
+                val x=(3..12).random()
+                val y=(0..1).random()
+                setField(15,4,2,2,x+1,2+y)
+                for(i in 3 .. x) { doPaint(i,2); doPaint(i,3) }
+                doPaint(x+1,3-y)
+                description = "Робот должен стать в конец более короткого ряда. Используйте <b>if(...) break</b> (выход из цикла по условию)"
+                maxTries = 5
+            }
+            "cif19" -> {
+                val x=(3..9).random()
+                val y=(0..1).random()
+                setField(15,4,2,2,x+2,2+y)
+                wallH(1,2,x)
+                wallH(3,2,x)
+                wallH(3-2*y,x+1,x+(1..4).random())
+                description = "Робот должен стать в конец более короткой стены. Используйте <b>if(...) break</b> (выход из цикла по условию)"
+                maxTries = 5
+            }
+            "cif20" -> {
+                val x=(8..13).random()
+                val y=(0..1).random()
+                setField(15,4,2,2,x+2,2+y)
+                wallH(1+2*y,2,x)
+                wallH(3-2*y,2,x-(0..4).random()-1)
+                description = "Робот должен стать в конец более длинной стены. Объявите перед циклом 2 переменные, например, <b>var u = freeFromUp</b>, и используйте <b>break</b>"
+                maxTries = 5
+            }
+            "cif21" -> {
+                var x=(0..1).random()*2-1
+                x *= (1..6).random()
+                val y=(3..7).random()
+                setField(15,8,8,2,8+x,y)
+                doPaint(8+x,2); doPaint(8+x, y)
+                description = "Робот должен переместиться во вторую закрашенную клетку"
+                maxTries = 5
+            }
+            "cif22" -> {
+                val x = (1..5).random()
+                val y = (9..13).random()
+                val xx = (x..y).random()+1
+                val yy = (x..y).random()
+                setField(15,5, xx,3,1,1)
+                wallV(x,2,2)
+                wallV(y+1,2,2)
+                wallH(2,x,y)
+                wallH(3,x,y)
+                when((0..7).random()){
+                    0 ->        unWallV(x,2,2)
+                    1 ->        unWallV(y+1,2,2)
+                    in 2..4 ->  unWallH(2, yy, yy)
+                    else ->     unWallH(3, yy, yy)
+                }
+                description = "Последнее, усложнённое задание. Робот должен найти выход из комнаты и пройти в верхний левый угол"
+                maxTries = 7
+            }
 	/*
-    "cif18" -> {
-		val x=(..).random()%10+3
-		val y=(..).random()%2
-		setField(15,4,2,2,x+1,2+y)
-		for(i in 3 until x) { doPaint(i,2); doPaint(i,3) }
-		doPaint(x+1,3-y)
-		description = "Робот должен стать в конец более короткого ряда. Используйте break (выход из цикла) в условии if"
-	}
-    "cif19" -> {
-		val x=(..).random()%7+3
-		val y=(..).random()%2
-		setField(15,4,2,2,x+1,2+y)
-		wallH(1,3,x)
-		wallH(3,3,x)
-		wallH(3-2*y,x+1,x+1+(..).random()%5)
-		description = "Робот должен стать в конец более короткой стены. Используйте break (выход из цикла) в условии if"
-	}
-    "cif20" -> {
-		val x=(..).random()%6+8
-		val y=(..).random()%2
-		setField(15,4,2,2,x+1,2+y)
-		wallH(1+2*y,3,x)
-		wallH(3-2*y,3,x-(..).random()%5-1)
-		description = "Робот должен стать в конец более длинной стены. Используем логические (bool) переменные и выход из цикла break"
-	}
-    "cif21" -> {
-		val x=(..).random()%2*2-1
-		x*=(..).random()%6+1
-		val y=(..).random()%5+3
-		setField(15,8,8,2,8+x,y)
-		doPaint(8+x,2) doPaint(8+x,y)
-		description = "Робот должен переместиться во вторую закрашенную клетку"
-	}
-    "cif22" -> {
-		val x=(..).random()%5+2
-		val y=(..).random()%5+10
-		xx = (..).random()%(y-x+1)+x
-		setField(15,5,xx,3,1,1)
-		wallV(x-1,3,3) wallV(y,3,3)
-		wallH(2,x,y) wallH(3,x,y)
-		switch((..).random()%8){
-		case 0: wallV(x-1,3,3,false) break
-		case 1: wallV(y,3,3,false) break
-		case 2: case 3: case 4:
-			yy = (..).random()%(y-x+1)+x
-			wallH(2,yy,yy,false)
-			break
-		default:
-			yy = (..).random()%(y-x+1)+x
-			wallH(3,yy,yy,false)
-		}
-		description = "Последнее, усложнённое задание. Робот должен найти выход из комнаты и пройти в верхний левый угол"
-	}
     "cnt1" -> {
 		val x=(..).random()%8+2
 		setField(10,5,x,3,x,3)
