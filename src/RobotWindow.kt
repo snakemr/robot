@@ -59,6 +59,8 @@ class RobotWindow(taskName: String) : JFrame()  {
                     "cc"    -> "Вложенные циклы"
                     "if"    -> "Оператор ветвления"
                     "cif"   -> "Ветвления и циклы"
+                    "cnt"   -> "Использование счётчиков"
+                    "fun"   -> "Использование функций"
                     else    -> ""
                 }
         this.taskName = taskName
@@ -1163,138 +1165,164 @@ class RobotWindow(taskName: String) : JFrame()  {
                 description = "Последнее, усложнённое задание. Робот должен найти выход из комнаты и пройти в верхний левый угол"
                 maxTries = 7
             }
+            "cnt1" -> {
+                val x=(2..9).random()
+                setField(10,5,x,3,x,3)
+                doPaint(10,3,true)
+                description = "Используйте переменную-счётчик (<b>var n = 0</b>) для подсчёта пройденных клеток (<b>n++</b>). Затем верните робота на место с помощью <b>for</b> или <b>repeat</b>"
+                maxTries = 3
+            }
+            "cnt2" -> {
+                val x=(2..7).random()
+                val y=(2..7).random()
+                setField(8,8,x,y,x,y)
+                doPaint(8,8,true)
+                description = "Используйте две переменные-счётчика для подсчёта пройденных клеток. Затем верните робота на место"
+                maxTries = 3
+            }
+            "cnt3" -> {
+                val y=(4..9).random()
+                val x=(2..y-1).random()
+                setField(10,10,x,y,y,x)
+                for(i in 1..10) doPaint(i,i)
+                description = "Используйте переменную-счётчик для перемещения робота в клетку, симметричную диагонали"
+                maxTries = 3
+            }
+            "cnt4" -> {
+                val x=(1..5).random()
+                val y=(4..8).random()
+                setField(10,4,x,2,x,3)
+                wallH(2,0, y)
+                description = "Используйте переменную-счётчик для того, чтобы робот обошёл стену"
+                maxTries = 3
+            }
+            "cnt5" -> {
+                val x=(7..11).random()
+                val y=(7..11).random()
+                val xx=(2..x-1).random()
+                val yy=(2..y-1).random()
+                setField(x,y,xx,yy,xx,yy)
+                for(i in 1 .. x){ doPaint(i,1,true); doPaint(i,y,true) }
+                for(i in 2 until y){ doPaint(1,i,true); doPaint(x,i,true) }
+                description = "Используйте переменные-счётчики для того, чтобы робот мог вернуться на место после закраски периметра"
+                maxTries = 2
+            }
+            "cnt6" -> {
+                val x=(1..6).random()
+                var y=(1..6).random()
+                while (y==x) y=(1..6).random()
+                setField(15,5,8,3, if(x<y) 8-x else 8+y, 3)
+                wallV(7-x,1,3)
+                wallV(8+y,1,3)
+                description = "Робот должен определить, какая стена ближе, и переместиться к ней"
+                maxTries = 5
+            }
+            "cnt7" -> {
+                val x=(2..5).random()%5+2
+                val y=(11..15).random()%5+11
+                val xx = (x+1..y-1).random()
+                setField(16,4,xx,2,xx,3)
+                wallH(2,x-1,y-1)
+                wallV(if((0..1).random()!=0) x-1 else y,0,1)
+                description = "Робот должен обойти стену с одной из сторон"
+                maxTries = 5
+            }
+            "cnt8" -> {
+                setField(16,3,2,2,1,2)
+                var x = 0
+                for(i in 2..16)
+                    if(i>10 || (0..1).random()!=0) {
+                        if(++x==5) robot.endX = i-1
+                        doPaint(i,2)
+                    }
+                description = "Робот должен остановиться на пятой закрашенной клетке"
+                maxTries = 5
+            }
+            "cnt9" -> {
+                setField(16,3,2,2,1,2)
+                var x = 0
+                for(i in 2..16)
+                    if(i>10||(0..1).random()%2!=0) {
+                        if(robot.endX==0 && ++x==3) robot.endX = i-1
+                        doPaint(i,2)
+                    }
+                    else x=0
+                description = "Робот должен остановиться на третьей закрашенной <b>подряд</b> клетке"
+                maxTries = 5
+            }
+            "cnt10" -> {
+                val x=(2..9).random()
+                val y= min(x, 6)
+                setField(10,3,2,2,y+1,2)
+                wallH(2,1, x-1)
+                for(i in 2 .. y) doPaint(i,2,true)
+                description = "Робот должен закрасить клетки над стеной, но всего не более пяти"
+                maxTries = 5
+            }
+            "cnt11" -> {
+                val x=(2..9).random()
+                setField(10,3,1,2,2,2)
+                wallV(x,1,1)
+                wallH(1,1, x-1)
+                wallH(2,1, x-1)
+                if(x>5) doPaint(2,2,true)
+                description = "Робот должен закрасить первую клетку коридора, если длина тупика более 4 клеток"
+                maxTries = 5
+            }
+            "cnt12" -> {
+                val x=(8..15).random()
+                setField(x,1,1,1,x,1)
+                for(i in 1 .. x) if(i%2==0) doPaint(i,1,true)
+                description = "Робот должен закрасить каждую вторую клетку в коридоре переменной длины. Проверить нечётность можно так: <b>if (n%2 == 1) ...</b>"
+                maxTries = 3
+            }
+            "cnt13" -> {
+                val x=(8..15).random()
+                setField(x,1,1,1,x,1)
+                for(i in 1 .. x) if(i%2!=0) doPaint(i,1,true)
+                description = "Робот должен закрасить каждую вторую клетку в коридоре переменной длины. Проверить чётность можно так: <b>if (n%2 == 0) ...</b>"
+                maxTries = 3
+            }
+            "cnt14" -> {
+                val x=(8..15).random()
+                setField(x,1,1,1,x,1)
+                for(i in 1 .. x) if(i%3==1) doPaint(i,1,true)
+                description = "Робот должен закрасить каждую третью клетку в коридоре переменной длины"
+                maxTries = 3
+            }
+            "cnt15" -> {
+                val x=(8..15).random()
+                setField(x,1,1,1,x,1)
+                for(i in 1 .. x) if(i%3==0) doPaint(i,1,true)
+                description = "Робот должен закрасить каждую третью клетку в коридоре переменной длины"
+                maxTries = 3
+            }
+            "cnt16" -> {
+                setField(24,3,2,2,24,2)
+                var y = 0
+                var i = 2
+                while (i<=24) {
+                    val x=(0..4).random() + i + if (i>2) 1 else 0
+                    while(i<=24 && i<x) {
+                        if (y != 0) doPaint(i, 2, true)
+                        i++
+                    }
+                    if (i<=24) doPaint(i++,2)
+                    y= 1-y
+                }
+                description = "Робот должен закрасить все нечётные пролёты между закрашенными клетками"
+                maxTries = 3
+            }
+            "cnt17" -> {
+                val x=(4..22).random()
+                setField(24,3,2,2,x,2)
+                for(i in 2 until 24)
+                    if ((i + if(i<x) 1 else 0)%2 != 0)
+                        wallH(2, i-1, i-1)
+                description = "Последнее задание. Робот должен обнаружить клетку, нарушающую закономерность"
+                maxTries = 3
+            }
 	/*
-    "cnt1" -> {
-		val x=(..).random()%8+2
-		setField(10,5,x,3,x,3)
-		doPaint(10,3,true)
-		description = "Используйте переменную-счётчик для подсчёта пройденных клеток. Затем верните робота на место с помощью цикла for"
-	}
-    "cnt2" -> {
-		val x=(..).random()%6+2
-		val y=(..).random()%6+2
-		setField(8,8,x,y,x,y)
-		doPaint(8,8,true)
-		description = "Используйте переменные-счётчики для подсчёта пройденных клеток. Затем верните робота на место с помощью циклов for"
-	}
-    "cnt3" -> {
-		val y=(..).random()%6+4
-		val x=(..).random()%(y-2)+2
-		setField(10,10,x,y,y,x)
-		for(i in 1 i<=10 i++) doPaint(i,i)
-		description = "Используйте переменную-счётчик для перемещения робота в клетку, симметричную диагонали"
-	}
-    "cnt4" -> {
-		val x=(..).random()%5+1
-		val y=(..).random()%5+5
-		setField(10,4,x,2,x,3)
-		wallH(2,1,y)
-		description = "Используйте переменную-счётчик для того, чтобы робот обошёл стену"
-	}
-    "cnt5" -> {
-		val x=(..).random()%5+7
-		val y=(..).random()%5+7
-		xval x=(..).random()%(x-2)+2
-		yval y=(..).random()%(y-2)+2
-		setField(x,y,xx,yy,xx,yy)
-		for(i in 1 until x){ doPaint(i,1,true); doPaint(i,y,true) }
-		for(i in 2..y){ doPaint(1,i,true); doPaint(x,i,true) }
-		description = "Используйте переменные-счётчики для того, чтобы робот мог вернуться на место после закраски периметра"
-	}
-    "cnt6" -> {
-		val x=(..).random()%6+1
-		while ((val y=(..).random()%6+1)==x)
-		setField(15,5,8,3,x<y?8-x else 8+y,3)
-		wallV(7-x,2,4) wallV(8+y,2,4)
-		description = "Робот должен определить, какая стена ближе, и переместиться к ней"
-	}
-    "cnt7" -> {
-		val x=(..).random()%5+2
-		val y=(..).random()%5+11
-		xx = (..).random()%(y-x-1)+x+1
-		setField(16,4,xx,2,xx,3)
-		wallH(2,x,y)
-		wallV((..).random()%2?x-1 else y,1,2)
-		description = "Робот должен обойти стену с одной из сторон"
-	}
-    "cnt8" -> {
-		setField(16,3,2,2,0,2)
-		x=0
-		for(i in 2..16)
-			if(i>10||(..).random()%2) {
-				if(++x==5) endx=i
-				doPaint(i,2)
-			}
-		description = "Робот должен остановиться на пятой закрашенной клетке"
-	}
-    "cnt9" -> {
-		setField(16,3,2,2,0,2)
-		x=0
-		for(i in 2..16)
-			if(i>10||(..).random()%2) {
-				if(!endx && ++x==3) endx=i
-				doPaint(i,2)
-			}
-			else x=0
-		description = "Робот должен остановиться на третьей закрашенной подряд клетке"
-	}
-    "cnt10" -> {
-		val x=(..).random()%8+2
-		y=x>6?x else 6
-		setField(10,3,2,2,y+1,2)
-		wallH(2,2,x)
-		for(i in 2 until y) doPaint(i,2,true)
-		description = "Робот должен закрасить клетки над стеной, всего не менее пяти"
-	}
-    "cnt11" -> {
-		val x=(..).random()%8+2
-		setField(10,3,1,2,2,2)
-		wallV(x,2,2) wallH(1,2,x) wallH(2,2,x)
-		if(x>5) doPaint(2,2,true)
-		description = "Робот должен закрасить первую клетку коридора, если длина тупика более 4 клеток"
-	}
-    "cnt12" -> {
-		val x=(..).random()%8+8
-		setField(x,1,1,1,x,1)
-		for(i in 1 until x) if(!(i%2)) doPaint(i,1,true)
-		description = "Робот должен закрасить каждую вторую клетку в коридоре переменной длины"
-	}
-    "cnt13" -> {
-		val x=(..).random()%8+8
-		setField(x,1,1,1,x,1)
-		for(i in 1 until x) if(i%2) doPaint(i,1,true)
-		description = "Робот должен закрасить каждую вторую клетку в коридоре переменной длины"
-	}
-    "cnt14" -> {
-		val x=(..).random()%8+8
-		setField(x,1,1,1,x,1)
-		for(i in 1 until x) if(i%3==1) doPaint(i,1,true)
-		description = "Робот должен закрасить каждую третью клетку в коридоре переменной длины"
-	}
-    "cnt15" -> {
-		val x=(..).random()%8+8
-		setField(x,1,1,1,x,1)
-		for(i in 1 until x) if(i%3==0) doPaint(i,1,true)
-		description = "Робот должен закрасить каждую третью клетку в коридоре переменной длины"
-	}
-    "cnt16" -> {
-		setField(24,3,2,2,24,2)
-		y=0
-		for(i in 2 until 24){
-			val x=(..).random()%5+i+(i>2)
-			for( i<=24 && i<x i++)
-				if(y) doPaint(i,2,true)
-			doPaint(i++,2)
-			y=!y
-		}
-		description = "Робот должен закрасить все нечётные пролёты между закрашенными клетками"
-	}
-    "cnt17" -> {
-		val x=(..).random()%19+4
-		setField(24,3,2,2,x,2)
-		for(i in 2 until 24) wallH(2,i,i,(i+(i<x))%2)
-		description = "Последнее задание. Робот должен обнаружить клетку, нарушающую закономерность"
-	}
     "mix1" -> {
 		val x=(..).random()%5+2
 		setField(8,8,x,x,8,8)
@@ -1409,11 +1437,6 @@ class RobotWindow(taskName: String) : JFrame()  {
 			doPaint(7,i,true)
 		  }
 		description = "Закрасьте клетки напротив уже закрашенных. Используйте массив для запоминания позиций"
-	DefineTaskEnd
-	}
-	else
-	{
-	DefineTaskStart
 	}
     "p1" -> {
 		setField(10,10,3,7,5,3)
