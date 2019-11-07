@@ -1536,16 +1536,16 @@ class RobotWindow(taskName: String) : JFrame()  {
                 for(i in 2 until 17)
                     for(j in 2 until 15)
                         if(i%2==0 || j%2==0) doPaint(i,j,true)
-                description = "Составьте процедуры Row1( ) и Row2( ) для двух разновидностей строк"
+                description = "Составьте функции <b>row1()</b> и <b>row2()</b> для двух разновидностей строк"
+            }
+            "fun15" -> {
+                setField(21,15,2,2,2,14)
+                for(i in 2 until 22)
+                    for(j in 2 until 15)
+                        if((j%2==0 && i%4==0) || (j%2!=0 && (i+2)%4!=0)) doPaint(i-1,j,true)
+                description = "Последнее задание. Составьте функции <b>row3()</b> и <b>row4()</b> для двух разновидностей строк"
             }
 /*
-    "fun15" -> {
-		setField(21,15,2,2,2,14)
-		for(i in 2..22)
-			for(j in 2..15)
-				if((!(j%2) && !(i%4)) || ((j%2) && ((i+2)%4))) doPaint(i-1,j,true)
-		description = "Последнее задание. Составьте процедуры Row1( ) и Row2( ) для двух разновидностей строк"
-	}
     "par1" -> {
 		setField(12,7,1,1,1,7)
 		const int pp[7] = {7,9,5,4,11,2,7}

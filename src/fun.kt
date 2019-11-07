@@ -1,5 +1,5 @@
 // Нажммите зелёную ► слева от этой строки и выберите "Run 'FunKt'"
-fun main() = robot("fun14", 5)    // Зелёным цветом выделен номер текущего задания
+fun main() = robot("fun15", 5)    // Зелёным цветом выделен номер текущего задания
 // Прочитайте задание. Напишите решение в виде функции: fun funN() { решение }, где N - номер задания
 // Для выполнения повторяющихся действий создавайте свои собственные функции: fun имяФункции() { ... }
 // и вызывайте их из основной программы: имяФункции()
@@ -209,4 +209,66 @@ fun fun13() {
         }
         left(); left(); left()
     }
+}
+
+fun row1() {
+    repeat(14) {
+        paint()
+        right()
+    }
+    paint()
+    repeat(14) { left() }
+}
+
+fun row2() {
+    var c = 0
+    repeat(14) {
+        if (c%2 == 0) paint()
+        right()
+        c++
+    }
+    if (c%2 == 0) paint()
+    repeat(14) { left() }
+}
+
+fun fun14() {
+    repeat(6) {
+        row1()
+        down()
+        row2()
+        down()
+    }
+    row1()
+}
+
+fun row3() {
+    var c = 0
+    repeat(19) {
+        if (c%4 == 1) paint()
+        right()
+        c++
+    }
+    if (c%4 == 1) paint()
+    repeat(19) { left() }
+}
+
+fun row4() {
+    var c = 0
+    repeat(19) {
+        if (c%4 != 3) paint()
+        right()
+        c++
+    }
+    if (c%4 == 1) paint()
+    repeat(19) { left() }
+}
+
+fun fun15() {
+    repeat(6) {
+        row3()
+        down()
+        row4()
+        down()
+    }
+    row3()
 }
