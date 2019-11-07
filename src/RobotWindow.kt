@@ -61,6 +61,7 @@ class RobotWindow(taskName: String) : JFrame()  {
                     "cif"   -> "Ветвления и циклы"
                     "cnt"   -> "Использование счётчиков"
                     "fun"   -> "Использование функций"
+                    "par"   -> "Функции с параметрами"
                     else    -> ""
                 }
         this.taskName = taskName
@@ -1438,112 +1439,114 @@ class RobotWindow(taskName: String) : JFrame()  {
 		  }
 		description = "Закрасьте клетки напротив уже закрашенных. Используйте массив для запоминания позиций"
 	}
-    "p1" -> {
-		setField(10,10,3,7,5,3)
-		DoCross(3,7,true)
-		DoCross(8,6,true)
-		DoCross(5,3,true)
-		description = "Составьте процедуру Cross( ). Заставьте робота выполнить её трижды"
-	}
-    "p2" -> {
-		setField(16,4,2,2,14,2)
-		for(i in 0..5)
-			DoBox(i*3+2,2,true)
-		description = "Составьте процедуру Box4( ). Заставьте робота выполнить её нужное число раз (в цикле for)"
-	}
-    "p3" -> {
-		setField(12,12,1,1,11,11)
-		for(i in 0..6)
-			DoBox(i*2+1,i*2+1,true)
-		description = "Используйте процедуру Box4( ) из второго задания. Заставьте робота выполнить её нужное число раз (в цикле for)"
-	}
-    "p4" -> {
-		setField(6,6,2,2,2,2)
-		DoBox(2,2,true); doBox(4,2,true); doBox(2,4,true); doBox(4,4,true)
-		description = "Составьте процедуру Box16( ), четырежды вызывающую процедуру Box4( ) из второго задания"
-	}
-    "p5" -> {
-		setField(10,10,2,2,2,2)
-		for(i in 2..10)
-			for(j in 2..10)
-				doPaint(i,j,true)
-		description = "Используйте процедуру Box16( ) из четвёртого задания. Заставьте робота выполнить её четырежды"
-	}
-    "p6" -> {
-		setField(9,9,1,2,1,8)
-		for(i in 2 until 8 step 2)
-			for(j in 1 until 9)
-				doPaint(j,i,true)
-		description = "Составьте и используйте процедуру Row( ), которая закрашивает строку и возвращает робота назад"
-	}
-    "p7" -> {
-		setField(9,9,2,1,8,1)
-		for(i in 2 until 8 step 2)
-			for(j in 1 until 9)
-				doPaint(i,j,true)
-		description = "Составьте и используйте процедуру Col( ), которая закрашивает столбец и возвращает робота назад"
-	}
-    "p8" -> {
-		setField(9,9,1,2,8,1)
-		for(i in 2 until 8 step 2)
-			for(j in 1 until 9){
-				doPaint(j,i,true); doPaint(i,j,true)
-			}
-		description = "Используйте процедуры Row( ) и Col( ) из предыдущих заданий"
-	}
-    "p9" -> {
-		setField(15,15,2,2,6,6)
-		for(i in 2 until 6 step 2)
-			for(j in 0..9){
-				doPaint(j+i,i,true); doPaint(i,j+i,true)
-			}
-		description = "Используйте процедуры Row( ) и Col( ) из предыдущих заданий"
-	}
-    "p10" -> {
-		setField(31,7,2,2,26,2)
-		for(i in 0..5)
-			for(j in 0..5){
-				doPaint(j+i*6+2,2,true); doPaint(j+i*6+2,6,true)
-				doPaint(i*6+2,j+2,true); doPaint(i*6+6,j+2,true)
-			}
-		description = "Составьте процедуру Kontour( ). Заставьте робота выполнить её пять раз"
-	}
-    "p11" -> {
-		setField(15,11,1,1,1,11)
-		for(i in 1..15 step 2)
-			for(j in 1..11 step 2)
-				doPaint(i,j,true)
-		description = "Составьте процедуру Punktir2( ). Заставьте робота выполнить её пять раз"
-	}
-    "p12" -> {
-		setField(16,12,2,2,3,11)
-		for(i in 1..15 step 2)
-			for(j in 1..11)
-				doPaint(i+2-j%2,j+1,true)
-		description = "Используйте процедуру Punktir2( ) из предыдущего задания"
-	}
-    "p13" -> {
-		setField(17,14,2,2,2,14)
-		for(i in 2..15 step 3)
-			for(j in 0..12)
-				doPaint(i+j%3,j+2,true)
-		description = "Составьте процедуру Punktir3( ). Заставьте робота выполнить её 12 раз"
-	}
-    "p14" -> {
-		setField(17,15,2,2,2,14)
-		for(i in 2..17)
-			for(j in 2..15)
-				if(!(i%2) || !(j%2)) doPaint(i,j,true)
-		description = "Составьте процедуры Row1( ) и Row2( ) для двух разновидностей строк"
-	}
-    "p15" -> {
+*/
+            "fun1" -> {
+                setField(10,10,3,7,5,3)
+                doCross(3,7,true)
+                doCross(8,6,true)
+                doCross(5,3,true)
+                description = "Составьте функцию <b>fun cross() {...}</b>. Заставьте робота выполнить её трижды"
+            }
+            "fun2" -> {
+                setField(16,4,2,2,14,2)
+                for(i in 0..4)
+                    doBox(i*3+2,2,true)
+                description = "Составьте функцию <b>fun box4()</b>. Заставьте робота выполнить её нужное число раз (в цикле)"
+            }
+            "fun3" -> {
+                setField(12,12,1,1,11,11)
+                for(i in 0..6)
+                    doBox(i*2+1,i*2+1,true)
+                description = "Используйте функцию <b>box4()</b> из второго задания. Заставьте робота выполнить её нужное число раз"
+            }
+            "fun4" -> {
+                setField(6,6,2,2,2,2)
+                doBox(2,2,true); doBox(4,2,true); doBox(2,4,true); doBox(4,4,true)
+                description = "Составьте функцию <b>box16()</b>, четырежды вызывающую функцию <b>box4()</b> из второго задания"
+            }
+            "fun5" -> {
+                setField(10,10,2,2,2,2)
+                for(i in 2 until 10)
+                    for(j in 2 until 10)
+                        doPaint(i,j,true)
+                description = "Используйте функцию <b>box16()</b> из четвёртого задания. Заставьте робота выполнить её четырежды"
+            }
+            "fun6" -> {
+                setField(9,9,1,2,1,8)
+                for(i in 2 .. 8 step 2)
+                    for(j in 1 .. 9)
+                        doPaint(j,i,true)
+                description = "Составьте и используйте функцию <b>row()</b>, которая закрашивает строку и возвращает робота назад"
+            }
+            "fun7" -> {
+                setField(9,9,2,1,8,1)
+                for(i in 2 .. 8 step 2)
+                    for(j in 1 .. 9)
+                        doPaint(i,j,true)
+                description = "Составьте и используйте функцию <b>col()</b>, которая закрашивает столбец и возвращает робота назад"
+            }
+            "fun8" -> {
+                setField(9,9,1,2,8,1)
+                for(i in 2 .. 8 step 2)
+                    for(j in 1 .. 9){
+                        doPaint(j,i,true); doPaint(i,j,true)
+                    }
+                description = "Используйте функции <b>row()</b> и <b>col()</b> из предыдущих заданий"
+            }
+            "fun9" -> {
+                setField(15,15,2,2,6,6)
+                for(i in 2 .. 6 step 2)
+                    for(j in 0..8){
+                        doPaint(j+i,i,true); doPaint(i,j+i,true)
+                    }
+                description = "Используйте функции <b>row()</b> и <b>col()</b> из предыдущих заданий"
+            }
+            "fun10" -> {
+                setField(31,7,2,2,26,2)
+                for(i in 0 until 5)
+                    for(j in 0 until 5){
+                        doPaint(j+i*6+2,2,true); doPaint(j+i*6+2,6,true)
+                        doPaint(i*6+2,j+2,true); doPaint(i*6+6,j+2,true)
+                    }
+                description = "Составьте функцию <b>kontour()</b>. Заставьте робота выполнить её пять раз"
+            }
+            "fun11" -> {
+                setField(15,11,1,1,1,11)
+                for(i in 1 until 15 step 2)
+                    for(j in 1 until 11 step 2)
+                        doPaint(i,j,true)
+                description = "Составьте функцию <b>punktir2()</b>. Заставьте робота выполнить её пять раз"
+            }
+            "fun12" -> {
+                setField(16,12,2,2,3,11)
+                for(i in 1 until 15 step 2)
+                    for(j in 1 until 11)
+                        doPaint(i+2-j%2,j+1,true)
+                description = "Используйте функцию <b>punktir2()</b> из предыдущего задания"
+            }
+            "fun13" -> {
+                setField(17,14,2,2,2,14)
+                for(i in 2 until 15 step 3)
+                    for(j in 0 until 12)
+                        doPaint(i+j%3,j+2,true)
+                description = "Составьте функцию <b>punktir3()</b>. Заставьте робота выполнить её 12 раз"
+            }
+            "fun14" -> {
+                setField(17,15,2,2,2,14)
+                for(i in 2 until 17)
+                    for(j in 2 until 15)
+                        if(i%2==0 || j%2==0) doPaint(i,j,true)
+                description = "Составьте процедуры Row1( ) и Row2( ) для двух разновидностей строк"
+            }
+/*
+    "fun15" -> {
 		setField(21,15,2,2,2,14)
 		for(i in 2..22)
 			for(j in 2..15)
 				if((!(j%2) && !(i%4)) || ((j%2) && ((i+2)%4))) doPaint(i-1,j,true)
 		description = "Последнее задание. Составьте процедуры Row1( ) и Row2( ) для двух разновидностей строк"
 	}
-    "pp1" -> {
+    "par1" -> {
 		setField(12,7,1,1,1,7)
 		const int pp[7] = {7,9,5,4,11,2,7}
 		for(i in 1 until 7){
@@ -1551,7 +1554,7 @@ class RobotWindow(taskName: String) : JFrame()  {
 		}
 		description = "Составьте процедуры с параметром LeftN(N) и RightN(N), либо одну процедуру LeftRightN(N)"
 	}
-    "pp2" -> {
+    "par2" -> {
 		setField(10,10,1,1,9,1)
 		const int pp[5] = {7,4,9,6,8}
 		for(i in 0..5){
@@ -1560,7 +1563,7 @@ class RobotWindow(taskName: String) : JFrame()  {
 		}
 		description = "Составьте процедуру с параметром PaintDownN(N)"
 	}
-    "pp3" -> {
+    "par3" -> {
 		setField(9,9,1,1,5,5)
 		wallV(1,1,8)wallH(8,2,8)wallV(8,2,8)wallH(1,3,8)
 		wallV(2,2,7)wallH(7,3,7)wallV(7,3,7)wallH(2,4,7)
@@ -1568,7 +1571,7 @@ class RobotWindow(taskName: String) : JFrame()  {
 		wallV(4,4,5)wallH(5,5,5)wallV(5,5,5)
 		description = "Составьте процедуру с 4 параметрами GoMaze(D,R,U,L) с использованием 4 циклов for"
 	}
-    "pp4" -> {
+    "par4" -> {
 		setField(19,8,5,2,17,2)
 		for(x=5,i in 0 i<3 x+=7-i*2,i++){
 			for(j in 2..i+6); doPaint(x,j,true)
@@ -1576,13 +1579,13 @@ class RobotWindow(taskName: String) : JFrame()  {
 		}
 		description = "Составьте процедуру с 2 параметрами PaintT(X,Y) с использованием циклов for"
 	}
-    "pp5" -> {
+    "par5" -> {
 		setField(7,10,2,2,2,2)
 		for(i in 2..7)
 			for(j in 2..10); doPaint(i,j,true)
 		description = "Составьте процедуру с 2 параметрами Box(X,Y)"
 	}
-    "pp6" -> {
+    "par6" -> {
 		setField(18,13,2,3,3,8)
 		const int pp[5][4] = {{2,6,3,6},{3,7,8,12},{9,10,2,8},{12,15,2,8},{10,17,10,12}}
 		for(x=0x<5x++)
@@ -1590,7 +1593,7 @@ class RobotWindow(taskName: String) : JFrame()  {
 				for(j in pp[x][2] until pp[x][3]); doPaint(i,j,true)
 		description = "Используйте 5 раз процедуру Box(X,Y) из предыдущего задания"
 	}
-    "pp7" -> {
+    "par7" -> {
 		setField(13,11,3,2,9,3)
 		const int pp[3][4] = {{3,7,2,5},{9,12,3,7},{2,5,8,10}}
 		for(x=0x<3x++){
@@ -1599,7 +1602,7 @@ class RobotWindow(taskName: String) : JFrame()  {
 		}
 		description = "Составьте процедуру с 2 параметрами Perimeter(X,Y)"
 	}
-    "pp8" -> {
+    "par8" -> {
 		setField(16,8,2,2,13,1)
 		const int pp[3][4] = {{2,5,2,4},{7,11,3,6},{13,15,1,2}}
 		for(x=0x<3x++){
