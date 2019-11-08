@@ -62,6 +62,7 @@ class RobotWindow(taskName: String) : JFrame()  {
                     "cnt"   -> "Использование счётчиков"
                     "fun"   -> "Использование функций"
                     "par"   -> "Функции с параметрами"
+                    "mix"   -> "Задачи повышенной сложности"
                     else    -> ""
                 }
         this.taskName = taskName
@@ -1545,73 +1546,82 @@ class RobotWindow(taskName: String) : JFrame()  {
                         if((j%2==0 && i%4==0) || (j%2!=0 && (i+2)%4!=0)) doPaint(i-1,j,true)
                 description = "Последнее задание. Составьте функции <b>row3()</b> и <b>row4()</b> для двух разновидностей строк"
             }
-/*
-    "par1" -> {
-		setField(12,7,1,1,1,7)
-		const int pp[7] = {7,9,5,4,11,2,7}
-		for(i in 1 until 7){
-			wallH(i,2,12); doPaint(pp[i-1],i,true)
-		}
-		description = "Составьте процедуры с параметром LeftN(N) и RightN(N), либо одну процедуру LeftRightN(N)"
-	}
-    "par2" -> {
-		setField(10,10,1,1,9,1)
-		const int pp[5] = {7,4,9,6,8}
-		for(i in 0..5){
-			wallV(i*2,2,10)
-			for(j in 1 until pp[i]) doPaint(i*2+1,j,true)
-		}
-		description = "Составьте процедуру с параметром PaintDownN(N)"
-	}
-    "par3" -> {
-		setField(9,9,1,1,5,5)
-		wallV(1,1,8)wallH(8,2,8)wallV(8,2,8)wallH(1,3,8)
-		wallV(2,2,7)wallH(7,3,7)wallV(7,3,7)wallH(2,4,7)
-		wallV(3,3,6)wallH(6,4,6)wallV(6,4,6)wallH(3,5,6)
-		wallV(4,4,5)wallH(5,5,5)wallV(5,5,5)
-		description = "Составьте процедуру с 4 параметрами GoMaze(D,R,U,L) с использованием 4 циклов for"
-	}
-    "par4" -> {
-		setField(19,8,5,2,17,2)
-		for(x=5,i in 0 i<3 x+=7-i*2,i++){
-			for(j in 2..i+6); doPaint(x,j,true)
-			for(j in 0..3-i){ doPaint(x-j-1,2,true); doPaint(x+j+1,2,true) }
-		}
-		description = "Составьте процедуру с 2 параметрами PaintT(X,Y) с использованием циклов for"
-	}
-    "par5" -> {
-		setField(7,10,2,2,2,2)
-		for(i in 2..7)
-			for(j in 2..10); doPaint(i,j,true)
-		description = "Составьте процедуру с 2 параметрами Box(X,Y)"
-	}
-    "par6" -> {
-		setField(18,13,2,3,3,8)
-		const int pp[5][4] = {{2,6,3,6},{3,7,8,12},{9,10,2,8},{12,15,2,8},{10,17,10,12}}
-		for(x=0x<5x++)
-			for(i in pp[x][0] until pp[x][1])
-				for(j in pp[x][2] until pp[x][3]); doPaint(i,j,true)
-		description = "Используйте 5 раз процедуру Box(X,Y) из предыдущего задания"
-	}
-    "par7" -> {
-		setField(13,11,3,2,9,3)
-		const int pp[3][4] = {{3,7,2,5},{9,12,3,7},{2,5,8,10}}
-		for(x=0x<3x++){
-			for(i in pp[x][0] until pp[x][1]){ doPaint(i,pp[x][2],true); doPaint(i,pp[x][3],true) }
-			for(j in pp[x][2] until pp[x][3]){ doPaint(pp[x][0],j,true); doPaint(pp[x][1],j,true) }
-		}
-		description = "Составьте процедуру с 2 параметрами Perimeter(X,Y)"
-	}
-    "par8" -> {
-		setField(16,8,2,2,13,1)
-		const int pp[3][4] = {{2,5,2,4},{7,11,3,6},{13,15,1,2}}
-		for(x=0x<3x++){
-			for(i in pp[x][2]..8){ doPaint(pp[x][0],i,true); doPaint(pp[x][1],i,true) }
-			for(j in pp[x][0]+1..pp[x][1]); doPaint(j,pp[x][3],true)
-		}
-		description = "Последнее задание. Составьте процедуру с 3 параметрами PaintH(W,H,H1) с использованием циклов for"
-	}
- */
+            "par1" -> {
+                setField(12,7,1,1,1,7)
+                val pp = intArrayOf(7,9,5,4,11,2,7)
+                for(i in 1 until 7){
+                    wallH(i,1,11);
+                    doPaint(pp[i-1], i,true)
+                }
+                description = "Составьте и используйте 2 функции с параметром <b>left(n)</b> и <b>right(n)</b>, где n - количество шагов, либо одну функцию <b>rightPaintLeft(n)</b>"
+            }
+            "par2" -> {
+                setField(10,10,1,1,9,1)
+                val pp =  intArrayOf(7,4,9,6,8)
+                for(i in 0 until 5){
+                    wallV(i*2,1,9)
+                    for(j in 1 until pp[i]) doPaint(i*2+1, j,true)
+                }
+                description = "Составьте функцию с параметром <b>paintDownUp(n)</b>, где n - количество шагов"
+            }
+            "par3" -> {
+                setField(9,9,1,1,5,5)
+                wallV(1,0,7);   wallH(8,1,7);   wallV(8,1,7);   wallH(1,2,7)
+                wallV(2,1,6);   wallH(7,2,6);   wallV(7,2,6);   wallH(2,3,6)
+                wallV(3,2,5);   wallH(6,3,5);   wallV(6,3,5);   wallH(3,4,5)
+                wallV(4,3,4);   wallH(5,4,4);   wallV(5,4,4)
+                description = "Составьте функцию с 4 параметрами <b>goMaze(d, r, u, l)</b>, где <b>d</b> - количество шагов <b>↓</b>, <b>r →</b>, <b>u ↑</b>, <b>l ←</b>"
+            }
+            "par4" -> {
+                setField(19,8,5,2,17,2)
+                var x = 5
+                for(i in 0 until 3) {
+                    for(j in 2 until i+6) doPaint(x,j,true)
+                    for(j in 0 until 3-i){ doPaint(x-j-1,2,true); doPaint(x+j+1,2,true) }
+                    x += 7-i*2
+                }
+                description = "Составьте функцию с 2 параметрами <b>painT(x, y)</b>, где <b>x</b> - количество шагов <b>←</b> и <b>→</b>, а <b>y</b> - количество шагов <b>↓</b>"
+            }
+            "par5" -> {
+                setField(7,10,2,2,2,2)
+                for(i in 2 until 7)
+                    for(j in 2 until 10)
+                        doPaint(i, j,true)
+                description = "Составьте функцию с 2 параметрами <b>box(x, y)</b>"
+            }
+            "par6" -> {
+                setField(18,13,2,3,3,8)
+                val pp = arrayOf(
+                    intArrayOf(2,6,3,6),
+                    intArrayOf(3,7,8,12),
+                    intArrayOf(9,10,2,8),
+                    intArrayOf(12,15,2,8),
+                    intArrayOf(10,17,10,12)
+                )
+                for(x in 0 until 5)
+                    for(i in pp[x][0] .. pp[x][1])
+                        for(j in pp[x][2] .. pp[x][3])
+                            doPaint(i,j,true)
+                description = "Используйте 5 раз функцию <b>box(x, y)</b> из предыдущего задания"
+            }
+            "par7" -> {
+                setField(13,11,3,2,9,3)
+                val pp = arrayOf(   intArrayOf(3,7,2,5),   intArrayOf(9,12,3,7),   intArrayOf(2,5,8,10) )
+                for(x in 0 until 3){
+                    for(i in pp[x][0] .. pp[x][1]){ doPaint(i,pp[x][2],true); doPaint(i,pp[x][3],true) }
+                    for(j in pp[x][2]+1 until pp[x][3]){ doPaint(pp[x][0],j,true); doPaint(pp[x][1],j,true) }
+                }
+                description = "Составьте функцию с 2 параметрами <b>perimeter(x, y)</b>"
+            }
+            "par8" -> {
+                setField(16,8,2,2,13,1)
+                val pp = arrayOf(   intArrayOf(2,5,2,4),    intArrayOf(7,11,3,6),   intArrayOf(13,15,1,2)   )
+                for(x in 0 until 3){
+                    for(i in pp[x][2] until 8) { doPaint(pp[x][0],i,true); doPaint(pp[x][1],i,true) }
+                    for(j in pp[x][0]+1..pp[x][1]) doPaint(j,pp[x][3],true)
+                }
+                description = "Последнее задание. Составьте функцию с 3 параметрами <b>paintH(x, y, z)</b>, где x - ширина, y - высота буквы Н, z - высота перекладины"
+            }
             else -> {
                 setField(1, 1, 1, 1, 1,1)
                 description = "Робот остаётся в заводской упаковке"
