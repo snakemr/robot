@@ -1324,123 +1324,135 @@ class RobotWindow(taskName: String) : JFrame()  {
                 description = "Последнее задание. Робот должен обнаружить клетку, нарушающую закономерность"
                 maxTries = 3
             }
-	/*
-    "mix1" -> {
-		val x=(..).random()%5+2
-		setField(8,8,x,x,8,8)
-		for(i in x until 8)
-			for(j in x until 8)
-				doPaint(i,j,true)
-		description = "Закрасьте прямоугольник"
-	}
-    "mix2" -> {
-		val x=(..).random()%5+2
-		setField(8,8,x,x,8,8)
-		for(i in x until 8)
-			for(j in x+(i-x)%2 until 8 step 2)
-				doPaint(i,j,true)
-		description = "Закрасьте прямоугольник в шахматном порядке"
-	}
-    "mix3" -> {
-		val x=(0..3).random()+6
-		val y=(0..3).random()+2
-		xval x=(0..3).random()+2
-		yval y=(0..3).random()+6
-		setField(10,10,x,y,x,y)
-		for(i in xx until x)
-			for(j in y until yy)
-				doPaint(i,j,true)
-		doPaints(xx,yy)
-		description = "Закрасьте прямоугольник, предварительно определив его размер"
-	}
-    "mix4" -> {
-		val x=(..).random()%8+2
-		val y=(..).random()%8+2
-		xval x=(..).random()%8+2
-		yval y=(..).random()%8+2
-		setField(10,10,x,y,xx,yy)
-		doPaint(xx,yy)
-		description = "Найдите закрашенную клетку"
-	}
-    "mix5" -> {
-		val x=(..).random()%8+2
-		val y=(..).random()%8+2
-		xval x=(..).random()%8+2
-		yval y=(..).random()%8+2
-		setField(10,10,x,y,xx,yy)
-		for (i in 1 i<=10 i++) { doPaint(i,yy,true) doPaint(xx,i,true) }
-		doPaints(xx,yy)
-		description = "Найдите закрашенную клетку, и закрасьте указанные клетки"
-	}
-    "mix6" -> {
-		setField(10,10,1,1,1,10)
-		for (i in 1 i<10 i++)
-		  if ((..).random()%2){
-			doPaint(1,i)
-			doPaint(10,i,true)
-		  }
-		description = "Закрасьте клетки напротив уже закрашенных"
-	}
-    "mix7" -> {
-		setField(10,10,1,1,1,10)
-		for (i in 1 i<10 i++){
-		  int f=(0..3).random()
-		  if (f and 1) doPaint(1,i)
-		  if (f and 2) doPaint(10,i)
-		  if (f==3)
-			  for (j in 2 j<10 j++) doPaint(j,i,true)
-		}
-		description = "Закрасьте горизонтальные ряды между закрашенными клетками"
-	}
-    "mix8" -> {
-		setField(11,15,1,1,1,15)
-		for (i in 1 i<15 i++){
-		  int f=(..).random()%8
-		  if (f and 1) doPaint(1,i)
-		  if (f and 2) doPaint(11,i)
-		  if ((f and 4) && f!=7) doPaint((..).random()%9+2,i)
-		  if (f==7){
-			  for (j in 2 j<11 j++) doPaint(j,i,true)
-			  doPaints((..).random()%9+2,i)
-		  }
-		}
-		description = "Закрасьте горизонтальные ряды между закрашенными клетками, если там есть ещё одна закрашенная"
-	}
-    "mix9" -> {
-		val x=(..).random()%8+2
-		val y=(..).random()%8+2
-		do xval x=(..).random()%8+2 while(xx==x)
-		do yval y=(..).random()%8+2 while(yy==y)
-		setField(10,10,x,y,x,y)
-		for(i in min(x,xx) i<=max(x,xx) )
-			for(j in min(y,yy) j<=max(y,yy) j++)
-				doPaint(i,j,true)
-		doPaints(xx,yy)
-		description = "Закрасьте прямоугольник, предварительно определив его размер"
-	}
-    "mix10" -> {
-		setField(7,10,1,10,7,1)
-		wallV(1,2,10)
-		wallV(6,1,9)
-		for (i in 2 i<10 i++)
-		  if ((..).random()%2){
-			doPaint(1,i)
-			doPaint(7,i,true)
-		  }
-		description = "Закрасьте клетки напротив уже закрашенных. Используйте массив для запоминания позиций"
-	}
-    "mix11" -> {
-		setField(7,10,1,10,7,10)
-		wallV(1,2,10)
-		wallV(6,2,10)
-		for (i in 2 i<10 i++)
-		  if ((..).random()%2){
-			doPaint(1,i)
-			doPaint(7,i,true)
-		  }
-		description = "Закрасьте клетки напротив уже закрашенных. Используйте массив для запоминания позиций"
-	}
-*/
+            "mix1" -> {
+                val x=(2..6).random()
+                setField(8,8,x,x,8,8)
+                for(i in x .. 8)
+                    for(j in x .. 8)
+                        doPaint(i,j,true)
+                description = "Закрасьте прямоугольник"
+                maxTries = 3
+            }
+            "mix2" -> {
+                val x=(2..6).random()
+                setField(8,8,x,x,8,8)
+                for(i in x .. 8)
+                    for(j in x+(i-x)%2 .. 8 step 2)
+                        doPaint(i,j,true)
+                description = "Закрасьте прямоугольник в шахматном порядке"
+                maxTries = 3
+            }
+            "mix3" -> {
+                val x=(6..9).random()
+                val y=(2..5).random()
+                val xx=(2..5).random()
+                val yy=(6..9).random()
+                setField(10,10,x,y,x,y)
+                for(i in xx .. x)
+                    for(j in y .. yy)
+                        doPaint(i,j,true)
+                doPaints(xx,yy)
+                description = "Закрасьте прямоугольник, предварительно определив его размер"
+                maxTries = 3
+            }
+            "mix4" -> {
+                val x=(2..9).random()
+                val y=(2..9).random()
+                val xx=(2..9).random()
+                val yy=(2..9).random()
+                setField(10,10,x,y,xx,yy)
+                doPaint(xx,yy)
+                description = "Найдите закрашенную клетку"
+                maxTries = 3
+            }
+            "mix5" -> {
+                val x=(2..9).random()
+                val y=(2..9).random()
+                val xx=(2..9).random()
+                val yy=(2..9).random()
+                setField(10,10,x,y,xx,yy)
+                for (i in 1 .. 10) { doPaint(i,yy,true); doPaint(xx,i,true) }
+                doPaints(xx,yy)
+                description = "Найдите закрашенную клетку, и закрасьте указанные клетки"
+                maxTries = 3
+            }
+            "mix6" -> {
+                setField(10,10,1,1,1,10)
+                for (i in 1 until 10)
+                if ((0..1).random()!=0){
+                    doPaint(1,i)
+                    doPaint(10,i,true)
+                }
+                description = "Закрасьте клетки напротив уже закрашенных"
+                maxTries = 3
+            }
+            "mix7" -> {
+                setField(10,10,1,1,1,10)
+                for (i in 1 until 10){
+                    val f = (0..3).random()
+                    if (f and 1 != 0) doPaint(1,i)
+                    if (f and 2 != 0) doPaint(10,i)
+                    if (f==3)
+                        for (j in 2 until 10)
+                            doPaint(j,i,true)
+                }
+                description = "Закрасьте горизонтальные ряды между закрашенными клетками"
+                maxTries = 3
+            }
+            "mix8" -> {
+                setField(11,15,1,1,1,15)
+                for (i in 1 until 15){
+                    val f=(0..7).random()
+                    if (f and 1 != 0) doPaint(1,i)
+                    if (f and 2 != 0) doPaint(11,i)
+                    if (f and 4 != 0 && f!=7) doPaint((2..10).random()%9+2,i)
+                    if (f==7){
+                        for (j in 2 until 11) doPaint(j,i,true)
+                        doPaints((2..10).random()%9+2, i)
+                    }
+                }
+                description = "Закрасьте горизонтальные ряды между закрашенными клетками, если там есть ещё одна закрашенная"
+                maxTries = 3
+            }
+            "mix9" -> {
+                val x=(2..9).random()
+                val y=(2..9).random()
+                var xx=(2..9).random()
+                var yy=(2..9).random()
+                while(xx==x) xx=(2..9).random()
+                while(yy==y) yy=(2..9).random()
+                setField(10,10,x,y,x,y)
+                for(i in min(x,xx) .. max(x,xx))
+                    for(j in min(y,yy) .. max(y,yy))
+                        doPaint(i,j,true)
+                doPaints(xx,yy)
+                description = "Закрасьте прямоугольник, предварительно определив его размер"
+                maxTries = 3
+            }
+            "mix10" -> {
+                setField(7,10,1,10,7,1)
+                wallV(1,1,9)
+                wallV(6,0,8)
+                for (i in 2 until 10)
+                    if ((0..1).random()!=0){
+                        doPaint(1,i)
+                        doPaint(7,i,true)
+                    }
+                description = "Закрасьте клетки напротив уже закрашенных. Используйте массив для запоминания позиций"
+                maxTries = 3
+            }
+            "mix11" -> {
+                setField(7,10,1,10,7,10)
+                wallV(1,1,9)
+                wallV(6,1,9)
+                for (i in 2 until 10)
+                    if ((0..1).random()!=0){
+                        doPaint(1,i)
+                        doPaint(7,i,true)
+                    }
+                description = "Закрасьте клетки напротив уже закрашенных. Используйте массив для запоминания позиций"
+                maxTries = 3
+            }
             "fun1" -> {
                 setField(10,10,3,7,5,3)
                 doCross(3,7,true)
